@@ -8,9 +8,8 @@ This is a INA260 based board for measuring voltage and current draw (with builti
 
 ## Components
 
-- INA260 - Current Sensing Amplifier With Integrated Shunt .
-- STM32F070F6P6 - Simple Microcontroller for I2C -> USB conversion .
-- AP2127 - LDO for the microcontroller .
+- INA260 - Current Sensing Amplifier With Integrated Shunt.
+- EFM32HG309 - Simple Microcontroller for I2C -> USB conversion.
 
 ## Resources
 
