@@ -8,8 +8,9 @@ This is a INA260 based board for measuring voltage and current draw (with builti
 
 ## Components
 
-- INA260 - Current Sensing Amplifier With Integrated Shunt.
-- EFM32HG309 - Simple Microcontroller for I2C -> USB conversion.
+- [INA260](http://www.ti.com/lit/ds/symlink/ina260.pdf) - Current Sensing Amplifier With Integrated Shunt.
+- [EFM32HG309](https://www.silabs.com/Support%20Documents/TechnicalDocs/EFM32HG309.pdf) - Simple Microcontroller for I2C -> USB conversion.
+- [TPD4E002](http://www.ti.com/lit/ds/symlink/tpd4e002.pdf) - ESD Protection IC
 
 ## Resources
 
