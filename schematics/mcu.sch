@@ -292,19 +292,17 @@ F 3 "" H 6300 2500 50  0000 C CNN
 	1    6300 2500
 	1    0    0    -1  
 $EndComp
-Text Label 4400 3250 0    60   ~ 0
-I2C0_SDA
 Text Label 4400 3450 0    60   ~ 0
 I2C0_SCL
 Text Label 4450 2400 0    60   ~ 0
 UART_TX
 Text Label 4450 2600 0    60   ~ 0
 UART_RX
-Text HLabel 3100 3000 1    60   Input ~ 0
+Text HLabel 2950 3000 1    60   Input ~ 0
 I2C0-SDA
-Text HLabel 3250 3000 1    60   Input ~ 0
+Text HLabel 3100 3000 1    60   Input ~ 0
 I2C0_SCL
-Text HLabel 2950 2950 1    60   Input ~ 0
+Text HLabel 3250 3000 1    60   Input ~ 0
 3.3V
 Text HLabel 2800 2950 1    60   Input ~ 0
 GND
@@ -337,21 +335,70 @@ NoConn ~ 5150 3150
 NoConn ~ 5150 3250
 NoConn ~ 5150 3550
 NoConn ~ 5150 3650
-NoConn ~ 5150 3950
 NoConn ~ 7100 2250
 NoConn ~ 7250 2250
+$Comp
+L PWR_FLAG #FLG012
+U 1 1 58822FBE
+P 6700 2750
+F 0 "#FLG012" H 6700 2845 50  0001 C CNN
+F 1 "PWR_FLAG" H 6700 2930 50  0000 C CNN
+F 2 "" H 6700 2750 50  0000 C CNN
+F 3 "" H 6700 2750 50  0000 C CNN
+	1    6700 2750
+	1    0    0    -1  
+$EndComp
+NoConn ~ 5150 2750
+$Comp
+L Ferrite_Bead_Small L1
+U 1 1 58834258
+P 7100 2750
+F 0 "L1" V 7150 2800 50  0000 L CNN
+F 1 "100R" V 7000 2650 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" V 7030 2750 50  0001 C CNN
+F 3 "" H 7100 2750 50  0000 C CNN
+	1    7100 2750
+	0    1    1    0   
+$EndComp
+$Comp
+L C_Small C6
+U 1 1 58848677
+P 6450 2350
+F 0 "C6" H 6460 2420 50  0000 L CNN
+F 1 "1nF" H 6460 2270 50  0000 L CNN
+F 2 "Capacitors_SMD:C_0805_HandSoldering" H 6450 2350 50  0001 C CNN
+F 3 "" H 6450 2350 50  0000 C CNN
+	1    6450 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L PWR_FLAG #FLG013
+U 1 1 588E9D77
+P 7250 4000
+F 0 "#FLG013" H 7250 4095 50  0001 C CNN
+F 1 "PWR_FLAG" H 7250 4180 50  0000 C CNN
+F 2 "" H 7250 4000 50  0000 C CNN
+F 3 "" H 7250 4000 50  0000 C CNN
+	1    7250 4000
+	0    1    1    0   
+$EndComp
+$Comp
+L SW_Push SW1
+U 1 1 588F2FDA
+P 4950 4450
+F 0 "SW1" H 5000 4550 50  0000 L CNN
+F 1 "SW_Push" H 4950 4390 50  0000 C CNN
+F 2 "draw:Tact" H 4950 4650 50  0001 C CNN
+F 3 "" H 4950 4650 50  0000 C CNN
+	1    4950 4450
+	0    1    1    0   
+$EndComp
 Wire Wire Line
 	6300 2450 6300 2500
 Wire Wire Line
 	7600 1350 7600 1600
 Wire Wire Line
 	7050 1350 7600 1350
-Connection ~ 6950 2950
-Wire Wire Line
-	6950 2250 6950 2950
-Connection ~ 6800 2850
-Wire Wire Line
-	6800 2250 6800 2850
 Wire Wire Line
 	4800 3050 5150 3050
 Connection ~ 2800 3450
@@ -361,7 +408,7 @@ Wire Wire Line
 	5150 4250 5150 4050
 Connection ~ 7250 3850
 Wire Wire Line
-	7050 3850 7250 3850
+	7250 3850 7050 3850
 Wire Wire Line
 	7050 3750 7050 3850
 Connection ~ 6750 3250
@@ -454,15 +501,9 @@ Wire Wire Line
 Wire Wire Line
 	4950 2950 5150 2950
 Wire Wire Line
-	2700 3250 5000 3250
+	2700 3350 5150 3350
 Wire Wire Line
-	5000 3250 5000 3350
-Wire Wire Line
-	5000 3350 5150 3350
-Wire Wire Line
-	2700 3350 4350 3350
-Wire Wire Line
-	4350 3350 4350 3450
+	4350 3250 4350 3450
 Wire Wire Line
 	4350 3450 5150 3450
 Wire Wire Line
@@ -470,32 +511,11 @@ Wire Wire Line
 Wire Wire Line
 	6300 2250 6550 2250
 Wire Wire Line
-	3100 3000 3100 3250
-Connection ~ 3100 3250
-Wire Wire Line
-	3250 3000 3250 3350
-Connection ~ 3250 3350
-Wire Wire Line
-	2950 2950 2950 3150
-Connection ~ 2950 3150
-Wire Wire Line
 	6450 2750 7000 2750
 Wire Wire Line
 	6550 2250 6550 2750
 Connection ~ 6550 2750
-$Comp
-L PWR_FLAG #FLG012
-U 1 1 58822FBE
-P 6700 2750
-F 0 "#FLG012" H 6700 2845 50  0001 C CNN
-F 1 "PWR_FLAG" H 6700 2930 50  0000 C CNN
-F 2 "" H 6700 2750 50  0000 C CNN
-F 3 "" H 6700 2750 50  0000 C CNN
-	1    6700 2750
-	1    0    0    -1  
-$EndComp
 Connection ~ 6700 2750
-NoConn ~ 5150 2750
 Wire Wire Line
 	5150 4250 4950 4250
 Wire Wire Line
@@ -505,53 +525,41 @@ Wire Wire Line
 Wire Wire Line
 	7250 3350 7650 3350
 Connection ~ 7250 3350
-$Comp
-L Ferrite_Bead_Small L1
-U 1 1 58834258
-P 7100 2750
-F 0 "L1" V 7150 2800 50  0000 L CNN
-F 1 "100R" V 7000 2650 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0805_HandSoldering" V 7030 2750 50  0001 C CNN
-F 3 "" H 7100 2750 50  0000 C CNN
-	1    7100 2750
-	0    1    1    0   
-$EndComp
-$Comp
-L C_Small C6
-U 1 1 58848677
-P 6450 2350
-F 0 "C6" H 6460 2420 50  0000 L CNN
-F 1 "1nF" H 6460 2270 50  0000 L CNN
-F 2 "Capacitors_SMD:C_0805_HandSoldering" H 6450 2350 50  0001 C CNN
-F 3 "" H 6450 2350 50  0000 C CNN
-	1    6450 2350
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	6300 2450 6450 2450
 Connection ~ 6300 2450
 Connection ~ 6450 2250
-$Comp
-L PWR_FLAG #FLG013
-U 1 1 588E9D77
-P 7250 4000
-F 0 "#FLG013" H 7250 4095 50  0001 C CNN
-F 1 "PWR_FLAG" H 7250 4180 50  0000 C CNN
-F 2 "" H 7250 4000 50  0000 C CNN
-F 3 "" H 7250 4000 50  0000 C CNN
-	1    7250 4000
-	0    1    1    0   
-$EndComp
 Connection ~ 7250 4000
+Text Label 4700 3350 0    60   ~ 0
+I2C0_SDA
+Wire Wire Line
+	2700 3250 4350 3250
+Wire Wire Line
+	2950 3000 2950 3350
+Wire Wire Line
+	3100 3000 3100 3250
+Connection ~ 3100 3250
+Connection ~ 2950 3350
+Wire Wire Line
+	3250 3000 3250 3150
+Connection ~ 3250 3150
+Wire Wire Line
+	6800 2250 6800 2950
+Connection ~ 6800 2950
+Wire Wire Line
+	6950 2250 6950 2850
+Connection ~ 6950 2850
 $Comp
-L SW_Push SW1
-U 1 1 588F2FDA
-P 4950 4450
-F 0 "SW1" H 5000 4550 50  0000 L CNN
-F 1 "SW_Push" H 4950 4390 50  0000 C CNN
-F 2 "draw:Tact" H 4950 4650 50  0001 C CNN
-F 3 "" H 4950 4650 50  0000 C CNN
-	1    4950 4450
-	0    1    1    0   
+L GND #PWR?
+U 1 1 58948119
+P 5100 3950
+F 0 "#PWR?" H 5100 3700 50  0001 C CNN
+F 1 "GND" H 5000 3850 50  0000 C CNN
+F 2 "" H 5100 3950 50  0000 C CNN
+F 3 "" H 5100 3950 50  0000 C CNN
+	1    5100 3950
+	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	5150 3950 5100 3950
 $EndSCHEMATC
