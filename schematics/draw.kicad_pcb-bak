@@ -3,9 +3,9 @@
   (general
     (links 88)
     (no_connects 0)
-    (area 59.924999 94.924999 110.075001 135.075001)
+    (area 50.811981 93.5356 116.824543 136.5614)
     (thickness 1.6)
-    (drawings 21)
+    (drawings 22)
     (tracks 268)
     (zones 0)
     (modules 38)
@@ -1442,7 +1442,7 @@
   )
 
   (module Symbols:OSHW-Logo_5.7x6mm_SilkScreen (layer B.Cu) (tedit 0) (tstamp 5899D6F5)
-    (at 64.1858 108.4453 180)
+    (at 64.262 112.649 180)
     (descr "Open Source Hardware Logo")
     (tags "Logo OSHW")
     (attr virtual)
@@ -1793,7 +1793,10 @@
       (xy 0.376964 2.709982)) (layer B.SilkS) (width 0.01))
   )
 
-  (gr_text chinmay.audio/draw (at 67.7291 112.8776) (layer B.SilkS)
+  (gr_text "draw v1.0\n7/2/2017" (at 64.5922 124.4981) (layer B.SilkS)
+    (effects (font (size 0.8 0.8) (thickness 0.2)) (justify mirror))
+  )
+  (gr_text chinmay.audio/draw (at 67.5005 117.1829) (layer B.SilkS)
     (effects (font (size 0.8 0.8) (thickness 0.2)) (justify mirror))
   )
   (gr_text 3.3V (at 94.5642 103.9749 90) (layer F.SilkS)
