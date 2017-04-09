@@ -2,3 +2,4 @@ datasheets/
 test/
 schematics/tomu-hardware/
 *.zip
+firmware/tomu-examples/
