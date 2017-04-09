@@ -2,4 +2,9 @@ datasheets/
 test/
 schematics/tomu-hardware/
 *.zip
-firmware/tomu-examples/
+firmware/tomu-samples
+firmware/Gecko_SDK
+firmware/*.o
+firmware/*.d
+firmware/*.dump
+firmware/*.map
