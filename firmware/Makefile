@@ -125,8 +125,7 @@ clean:
 #
 GECKO_A_SRC = Gecko_SDK/platform/Device/SiliconLabs/EFM32HG/Source/GCC/startup_efm32hg.S
 GECKO_C_SRC = $(shell [ -d Gecko_SDK ] && find Gecko_SDK/platform/emlib/src -name \*.c \! -name em_int.c) \
-							Gecko_SDK/platform/Device/SiliconLabs/EFM32HG/Source/system_efm32hg.c \
-							Gecko_SDK/hardware/kit/common/drivers/capsense.c
+							Gecko_SDK/platform/Device/SiliconLabs/EFM32HG/Source/system_efm32hg.c
 GECKO_OBJ = $(patsubst %.S,%.o,$(GECKO_A_SRC)) \
 						$(patsubst %.c,%.o,$(GECKO_C_SRC))
 
@@ -150,3 +149,6 @@ draw.elf: main.o $(GECKO_OBJ)
 draw.bin: draw.elf
 	$(Q_OBJCOPY)$(OBJCOPY) -O binary $< $@
 
+
+flash: draw.bin
+	../upload.py --device /dev/tty.usbmodem1411 draw.bin
