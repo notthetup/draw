@@ -15,6 +15,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#include "usbconfig.h"
 #include "em_chip.h"
 #include "em_cmu.h"
 #include "em_device.h"
@@ -22,6 +23,10 @@
 #include "em_gpio.h"
 #include "em_usart.h"
 #include "em_i2c.h"
+#include "em_usb.h"
+
+#include "callbacks.h"
+#include "descriptors.h"
 
 #define USART0_LOCATION 4
 #define I2C0_LOCATION 4
@@ -244,6 +249,7 @@ int main() {
   GPIO_PinModeSet(gpioPortB, 11, gpioModeWiredOrPullDown, 0);
 
   setupUSART();
+  USBD_Init(&initstruct);
 
   USART_Tx_String(USART0, "\r\nInit...\r\n");
 

@@ -43,6 +43,7 @@ IFLAGS = -I. \
 				 -IGecko_SDK/platform/CMSIS/Include \
 				 -IGecko_SDK/platform/Device/SiliconLabs/EFM32HG/Include \
 				 -IGecko_SDK/platform/emlib/inc \
+				 -IGecko_SDK/platform/middleware/usb_gecko/inc \
 				 -IGecko_SDK/hardware/kit/common/drivers
 
 CFLAGS = $(IFLAGS) \
@@ -124,10 +125,14 @@ clean:
 # REAL TARGETS // COMMON
 #
 GECKO_A_SRC = Gecko_SDK/platform/Device/SiliconLabs/EFM32HG/Source/GCC/startup_efm32hg.S
-GECKO_C_SRC = $(shell [ -d Gecko_SDK ] && find Gecko_SDK/platform/emlib/src -name \*.c \! -name em_int.c) \
+GECKO_C_SRC = $(shell [ -d Gecko_SDK ] && find Gecko_SDK/platform/emlib/src Gecko_SDK/platform/middleware/usb_gecko/src -name \*.c \! -name em_int.c) \
 							Gecko_SDK/platform/Device/SiliconLabs/EFM32HG/Source/system_efm32hg.c
 GECKO_OBJ = $(patsubst %.S,%.o,$(GECKO_A_SRC)) \
 						$(patsubst %.c,%.o,$(GECKO_C_SRC))
+
+BLINKY_A_SRC = $(shell find . -maxdepth 1 -name \*.S)
+BLINKY_C_SRC = $(shell find . -maxdepth 1 -name \*.c)
+BLINKY_OBJ = $(patsubst %.S,%.o,$(BLINKY_A_SRC)) $(patsubst %.c,%.o,$(BLINKY_C_SRC))
 
 %.o: %.c
 	$(Q_CC)$(CC) -c $(CFLAGS) -c -o $@ $<
@@ -143,7 +148,7 @@ GECKO_OBJ = $(patsubst %.S,%.o,$(GECKO_A_SRC)) \
 draw.dump: draw.elf
 	$(Q_OBJDUMP)$(OBJDUMP) -Sx $^ > $@
 
-draw.elf: main.o $(GECKO_OBJ)
+draw.elf: $(BLINKY_OBJ) $(GECKO_OBJ)
 	$(Q_CC)$(CC) -Xlinker -Map=draw.map $(LFLAGS) -o $@ $^
 
 draw.bin: draw.elf
