@@ -32,7 +32,8 @@
 #include "descriptors.h"
 #include "retargetserial.h"
 
-#define I2C0_LOCATION 4
+#define INA260_I2C0_LOCATION 4
+#define INA260_SLAVE_ADDRESS 0x80
 
 // The uptime of this application in milliseconds, maintained by the SysTick
 // timer.
@@ -54,13 +55,9 @@ void SpinDelay(uint32_t millis) {
 }
 
 int main() {
-
-  uint8_t value [2];
-  uint8_t slave_addr = 0x80;
-  uint8_t man_id_reg [1] = {0xFE};
-  char str[20];
-  int ret = 0;
-  float voltage = 0;
+  bool ret;
+  char str[30];
+  uint32_t voltage, current, power= 0;
 
   // Runs the Silicon Labs chip initialisation stuff, that also deals with
   // errata (implements workarounds, etc).
@@ -82,29 +79,16 @@ int main() {
 
   RETARGET_SerialInit();
   RETARGET_SerialCrLf(1);
+
   // USBD_Init(&initstruct);
 
   printf("\nInit...\n");
 
-  // i2cSetup(I2C0, I2C0_LOCATION);
-  //
-  // printf("I2C Ready..\n");
-  //
-  // ret = i2cWriteReg(I2C0, slave_addr, man_id_reg);
-  // if (ret != 0){
-  //   printf("I2C Write Failed..\n");
-  // }
-  //
-  // ret = i2cReadReg(I2C0, slave_addr, value);
-  // if (ret != 0){
-  //   printf("I2C Read Failed..\n");
-  // }
-  //
-  // if (value[0] == 0x54 && value[1] == 0x49 ){
-  //   printf("I2C Test Passed..\n");
-  // }else{
-  //   printf("I2C Test Failed..\n");
-  // }
+  ret = ina260Setup(I2C0, INA260_I2C0_LOCATION, INA260_SLAVE_ADDRESS);
+  if (ret){
+    printf("INA260 Ready..\n");
+  }
+
 
   // Blink infinitely
   while (1) {
@@ -113,10 +97,12 @@ int main() {
     SpinDelay(100);
     GPIO_PinOutSet(gpioPortB, 11);
     SpinDelay(100);
-    // voltage = ina260getVoltage(I2C0, slave_addr);
-    //
-    // sprintf(str, "Bus Voltage : %d\n", (int)voltage);
-    // printf(str);
+    voltage = ina260getVoltageInuV();
+    current = ina260getCurrentInuA();
+    power = ina260getPowerInmW();
+
+    sprintf(str, "{V : %lu, C : %lu, P: %lu} \n", voltage, current, power);
+    printf(str);
     SpinDelay(400);
   }
 }
