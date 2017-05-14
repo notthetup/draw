@@ -52,23 +52,29 @@ CFLAGS = $(IFLAGS) \
 				 -Wextra \
 				 -mcpu=cortex-m0plus \
 				 -mthumb \
+				 -fmessage-length=0 \
 				 -ffunction-sections \
 				 -fdata-sections \
 				 -fomit-frame-pointer \
 				 -std=c99 \
 				 -MMD \
 				 -MP \
-				 -O0 \
-				 -g
+				 -Os \
+				 -g \
+				 -gdwarf-2
 
 LSCRIPT = draw.ld
 
 LFLAGS = -mcpu=cortex-m0plus \
+ 				 -gdwarf-2 \
 				 -mthumb \
 				 -T$(LSCRIPT) \
-				 --specs=nosys.specs \
+				 --specs=nano.specs \
+         --specs=nosys.specs \
 				 -Wl,--gc-sections \
 				 -Wl,--start-group \
+				 -lgcc \
+				 -lc \
 				 -lnosys \
 				 -Wl,--end-group
 
@@ -82,6 +88,7 @@ LFLAGS = -mcpu=cortex-m0plus \
 all: draw
 
 draw: draw.bin draw.elf
+	arm-none-eabi-size draw.elf
 
 check:
 	@echo "Checking Gecko SDK linker script $(LSCRIPT) to ensure FLASH ORIGIN is set to 0x00004000..."
@@ -125,8 +132,22 @@ clean:
 # REAL TARGETS // COMMON
 #
 GECKO_A_SRC = Gecko_SDK/platform/Device/SiliconLabs/EFM32HG/Source/GCC/startup_efm32hg.S
-GECKO_C_SRC = $(shell [ -d Gecko_SDK ] && find Gecko_SDK/platform/emlib/src Gecko_SDK/platform/middleware/usb_gecko/src -name \*.c \! -name em_int.c) \
+
+GECKO_C_SRC = Gecko_SDK/platform/emlib/src/em_cmu.c \
+							Gecko_SDK/platform/emlib/src/em_core.c \
+							Gecko_SDK/platform/emlib/src/em_gpio.c \
+							Gecko_SDK/platform/emlib/src/em_system.c \
+							Gecko_SDK/platform/emlib/src/em_timer.c \
+							Gecko_SDK/platform/emlib/src/em_usart.c \
+							Gecko_SDK/platform/emlib/src/em_i2c.c \
+						  Gecko_SDK/platform/middleware/usb_gecko/src/em_usbd.c \
+							Gecko_SDK/platform/middleware/usb_gecko/src/em_usbdch9.c \
+							Gecko_SDK/platform/middleware/usb_gecko/src/em_usbdep.c \
+							Gecko_SDK/platform/middleware/usb_gecko/src/em_usbdint.c \
+							Gecko_SDK/platform/middleware/usb_gecko/src/em_usbhal.c \
+							Gecko_SDK/platform/middleware/usb_gecko/src/em_usbtimer.c \
 							Gecko_SDK/platform/Device/SiliconLabs/EFM32HG/Source/system_efm32hg.c
+
 GECKO_OBJ = $(patsubst %.S,%.o,$(GECKO_A_SRC)) \
 						$(patsubst %.c,%.o,$(GECKO_C_SRC))
 

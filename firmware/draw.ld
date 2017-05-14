@@ -11,8 +11,8 @@
 
 MEMORY
 {
-  FLASH (rx) : ORIGIN = 0x00004000, LENGTH = 0xC000
-  RAM (rwx)  : ORIGIN = 0x20000000, LENGTH = 0x2000
+  FLASH (rx) : ORIGIN = 0x00004000, LENGTH = 0xC000 /* 64k */
+  RAM (rwx)  : ORIGIN = 0x20000000, LENGTH = 0x2000 /* 8k */
 }
 
 /* Linker script to place sections and symbol values. Should be used together
@@ -203,5 +203,5 @@ SECTIONS
   ASSERT(__StackLimit >= __HeapLimit, "region RAM overflowed with stack")
 
   /* Check if FLASH usage exceeds FLASH size */
-  ASSERT( LENGTH(FLASH) >= (__etext + SIZEOF(.data)), "FLASH memory overflowed !")
+  ASSERT( ORIGIN(FLASH) + LENGTH(FLASH) >= (__etext + SIZEOF(.data)), "FLASH memory overflowed !")
 }
