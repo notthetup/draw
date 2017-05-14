@@ -1,11 +1,11 @@
 /**************************************************************************//**
- * @file callbacks.h
- * @brief USB callback functions
- * @author Energy Micro AS
- * @version 1.01
+ * @file cdc.h
+ * @brief CDC header file
+ * @author Silicon Labs
+ * @version 1.10
  ******************************************************************************
  * @section License
- * <b>(C) Copyright 2012 Energy Micro AS, http://www.energymicro.com</b>
+ * <b>(C) Copyright 2014 Silicon Labs, http://www.silabs.com</b>
  *******************************************************************************
  *
  * Permission is granted to anyone to use this software for any purpose,
@@ -17,27 +17,21 @@
  * 2. Altered source versions must be plainly marked as such, and must not be
  *    misrepresented as being the original software.
  * 3. This notice may not be removed or altered from any source distribution.
- * 4. The source and compiled code may only be used on Energy Micro "EFM32"
- *    microcontrollers and "EFR4" radios.
  *
- * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Energy Micro AS has no
- * obligation to support this Software. Energy Micro AS is providing the
+ * DISCLAIMER OF WARRANTY/LIMITATION OF REMEDIES: Silicon Labs has no
+ * obligation to support this Software. Silicon Labs is providing the
  * Software "AS IS", with no express or implied warranties of any kind,
  * including, but not limited to, any implied warranties of merchantability
  * or fitness for any particular purpose or warranties against infringement
  * of any proprietary rights of a third party.
  *
- * Energy Micro AS will not be liable for any consequential, incidental, or
+ * Silicon Labs will not be liable for any consequential, incidental, or
  * special damages, or any other relief, or for any claim by any third party,
  * arising from your use of this Software.
  *
- *****************************************************************************/
-#ifndef _CALLBACKS_H_
-#define _CALLBACKS_H_
+ ******************************************************************************/
 
-int  setupCmd(const USB_Setup_TypeDef *setup);
-void stateChange(USBD_State_TypeDef oldState, USBD_State_TypeDef newState);
-int  dataReceivedCallback(USB_Status_TypeDef status, uint32_t xferred, uint32_t remaining);
-int  dataSentCallback(USB_Status_TypeDef status, uint32_t xferred, uint32_t remaining);
+extern bool CDC_Configured;
 
-#endif
+int  CDC_SetupCmd( const USB_Setup_TypeDef *setup );
+void CDC_StateChange( USBD_State_TypeDef oldState, USBD_State_TypeDef newState );

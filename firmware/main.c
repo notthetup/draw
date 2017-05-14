@@ -16,7 +16,6 @@
 #include <stdbool.h>
 #include <stdio.h>
 
-#include "usbconfig.h"
 #include "em_chip.h"
 #include "em_cmu.h"
 #include "em_device.h"
@@ -28,8 +27,8 @@
 #include "i2c-poll.h"
 #include "ina260.h"
 
-#include "callbacks.h"
 #include "descriptors.h"
+#include "bootldio.h"
 #include "retargetserial.h"
 
 #define INA260_I2C0_LOCATION 4
@@ -80,7 +79,7 @@ int main() {
   RETARGET_SerialInit();
   RETARGET_SerialCrLf(1);
 
-  // USBD_Init(&initstruct);
+  USBD_Init(&initstruct);
 
   printf("\nInit...\n");
 
@@ -89,6 +88,11 @@ int main() {
     printf("INA260 Ready..\n");
   }
 
+  while (!CDC_Configured);
+
+  printf("\nCDC Configured...\n");
+
+  BOOTLDIO_printString((const uint8_t*)"\r\n\r\n Hello World \r\n");
 
   // Blink infinitely
   while (1) {
