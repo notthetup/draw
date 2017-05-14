@@ -61,7 +61,8 @@ CFLAGS = $(IFLAGS) \
 				 -MP \
 				 -Os \
 				 -g \
-				 -gdwarf-2
+				 -gdwarf-2 \
+				 -DRETARGET_USART0
 
 LSCRIPT = draw.ld
 
@@ -70,12 +71,10 @@ LFLAGS = -mcpu=cortex-m0plus \
 				 -mthumb \
 				 -T$(LSCRIPT) \
 				 --specs=nano.specs \
-         --specs=nosys.specs \
 				 -Wl,--gc-sections \
 				 -Wl,--start-group \
 				 -lgcc \
 				 -lc \
-				 -lnosys \
 				 -Wl,--end-group
 
 
@@ -140,6 +139,8 @@ GECKO_C_SRC = Gecko_SDK/platform/emlib/src/em_cmu.c \
 							Gecko_SDK/platform/emlib/src/em_timer.c \
 							Gecko_SDK/platform/emlib/src/em_usart.c \
 							Gecko_SDK/platform/emlib/src/em_i2c.c \
+							Gecko_SDK/hardware/kit/common/drivers/retargetio.c \
+							Gecko_SDK/hardware/kit/common/drivers/retargetserial.c \
 						  Gecko_SDK/platform/middleware/usb_gecko/src/em_usbd.c \
 							Gecko_SDK/platform/middleware/usb_gecko/src/em_usbdch9.c \
 							Gecko_SDK/platform/middleware/usb_gecko/src/em_usbdep.c \

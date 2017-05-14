@@ -30,7 +30,7 @@
 
 #include "callbacks.h"
 #include "descriptors.h"
-#include "retargetdebug.h"
+#include "retargetserial.h"
 
 #define I2C0_LOCATION 4
 
@@ -71,6 +71,8 @@ int main() {
   // enabled for the GPIO to work.
   CMU_ClockEnable(cmuClock_GPIO, true);
 
+  CMU_ClockEnable(cmuClock_HFPER, true);
+
   // Sets up and enable the `SysTick_Handler' interrupt to fire once every 1ms.
   // ref: http://community.silabs.com/t5/Official-Blog-of-Silicon-Labs/Chapter-5-MCU-Clocking-Part-2-The-SysTick-Interrupt/ba-p/145297
   if (SysTick_Config(CMU_ClockFreqGet(cmuClock_CORE) / 1000)) {
@@ -79,29 +81,30 @@ int main() {
   }
 
   RETARGET_SerialInit();
-  USBD_Init(&initstruct);
+  RETARGET_SerialCrLf(1);
+  // USBD_Init(&initstruct);
 
   printf("\nInit...\n");
 
-  i2cSetup(I2C0, I2C0_LOCATION);
-
-  printf("I2C Ready..\n");
-
-  ret = i2cWriteReg(I2C0, slave_addr, man_id_reg);
-  if (ret != 0){
-    printf("I2C Write Failed..\n");
-  }
-
-  ret = i2cReadReg(I2C0, slave_addr, value);
-  if (ret != 0){
-    printf("I2C Read Failed..\n");
-  }
-
-  if (value[0] == 0x54 && value[1] == 0x49 ){
-    printf("I2C Test Passed..\n");
-  }else{
-    printf("I2C Test Failed..\n");
-  }
+  // i2cSetup(I2C0, I2C0_LOCATION);
+  //
+  // printf("I2C Ready..\n");
+  //
+  // ret = i2cWriteReg(I2C0, slave_addr, man_id_reg);
+  // if (ret != 0){
+  //   printf("I2C Write Failed..\n");
+  // }
+  //
+  // ret = i2cReadReg(I2C0, slave_addr, value);
+  // if (ret != 0){
+  //   printf("I2C Read Failed..\n");
+  // }
+  //
+  // if (value[0] == 0x54 && value[1] == 0x49 ){
+  //   printf("I2C Test Passed..\n");
+  // }else{
+  //   printf("I2C Test Failed..\n");
+  // }
 
   // Blink infinitely
   while (1) {
@@ -110,10 +113,10 @@ int main() {
     SpinDelay(100);
     GPIO_PinOutSet(gpioPortB, 11);
     SpinDelay(100);
-    voltage = ina260getVoltage(I2C0, slave_addr);
-
-    sprintf(str, "Bus Voltage : %d\n", (int)voltage);
-    printf(str);
+    // voltage = ina260getVoltage(I2C0, slave_addr);
+    //
+    // sprintf(str, "Bus Voltage : %d\n", (int)voltage);
+    // printf(str);
     SpinDelay(400);
   }
 }
