@@ -9,7 +9,7 @@ import argparse
 LOG = logging.getLogger(__name__)
 
 
-def upload_firmware(dev, firmware_path):
+def upload_firmware(dev, firmware_path, bl):
     sdev = serial.Serial(port=dev, baudrate=115200, bytesize=8, parity='N',stopbits=1, timeout=None, xonxoff=0, rtscts=0)
     LOG.info("Uploading firmware to device %s", sdev.port)
 
@@ -33,7 +33,10 @@ def upload_firmware(dev, firmware_path):
 
     LOG.debug("Sending firmware via XMODEM")
     with open(firmware_path, 'rb') as firmware:
-        sdev.write(b'u')
+        if (bl):
+            sdev.write(b'd')
+        else:
+            sdev.write(b'u')
 
         LOG.debug("Waiting for CRC character")
         start = time()
@@ -61,10 +64,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('firmware', help='path to the firmware bin to load')
     parser.add_argument('--device', help='Path of the device to program')
+    parser.add_argument('-bl', help='Flash the bootloader', action='store_true')
     args = parser.parse_args()
 
     if args.device and args.firmware:
-        upload_firmware(args.device, args.firmware);
+        upload_firmware(args.device, args.firmware, args.bl);
 
 
 if __name__ == '__main__':
