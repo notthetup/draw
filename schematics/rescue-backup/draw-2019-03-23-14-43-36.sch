@@ -1,6 +1,38 @@
-EESchema Schematic File Version 4
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:draw
+LIBS:switches
+LIBS:silabs
 LIBS:draw-cache
-EELAYER 29 0
+EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -37,7 +69,7 @@ F5 "I2C_SCL" I R 5150 3800 60
 F6 "ALERT" I R 5150 4400 60 
 $EndSheet
 $Comp
-L Device:R_Small R1
+L R_Small R1
 U 1 1 588316A9
 P 5800 3600
 F 0 "R1" V 5700 3650 50  0000 L CNN
@@ -48,7 +80,7 @@ F 3 "" H 5800 3600 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_Small R2
+L R_Small R2
 U 1 1 58831855
 P 5800 3800
 F 0 "R2" V 5700 3850 50  0000 L CNN
@@ -59,7 +91,7 @@ F 3 "" H 5800 3800 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_Small R3
+L R_Small R3
 U 1 1 58831931
 P 5800 4000
 F 0 "R3" V 5700 4050 50  0000 L CNN
@@ -70,7 +102,7 @@ F 3 "" H 5800 4000 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_Small R4
+L R_Small R4
 U 1 1 588319B9
 P 5800 4200
 F 0 "R4" V 5700 4250 50  0000 L CNN
@@ -81,7 +113,7 @@ F 3 "" H 5800 4200 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_Small R5
+L R_Small R5
 U 1 1 58831A3B
 P 5800 4400
 F 0 "R5" V 5700 4450 50  0000 L CNN

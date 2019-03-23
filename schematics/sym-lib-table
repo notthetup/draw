@@ -1,3 +1,4 @@
 (sym_lib_table
-  (lib (name draw)(type Legacy)(uri /Users/chinmay/Documents/Personal/Projects/draw/schematics/draw.lib)(options "")(descr ""))
+  (lib (name draw-rescue)(type Legacy)(uri ${KIPRJMOD}/draw-rescue.lib)(options "")(descr ""))
+  (lib (name draw)(type Legacy)(uri ${KIPRJMOD}/draw.lib)(options "")(descr ""))
 )

@@ -1,6 +1,38 @@
-EESchema Schematic File Version 4
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:draw
+LIBS:switches
+LIBS:silabs
 LIBS:draw-cache
-EELAYER 29 0
+EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -15,7 +47,18 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L power:GND #PWR01
+L USB_OTG P4
+U 1 1 5881A446
+P 7550 2950
+F 0 "P4" H 7875 2825 50  0000 C CNN
+F 1 "USB_OTG" H 7550 3150 50  0000 C CNN
+F 2 "Connect:USB_Micro-B" V 7500 2850 50  0001 C CNN
+F 3 "" V 7500 2850 50  0000 C CNN
+	1    7550 2950
+	0    1    1    0   
+$EndComp
+$Comp
+L GND #PWR01
 U 1 1 5881A44D
 P 7250 4250
 F 0 "#PWR01" H 7250 4000 50  0001 C CNN
@@ -26,33 +69,40 @@ F 3 "" H 7250 4250 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:Conn_01x04_Male P2
+L CONN_01X04 P2
 U 1 1 5881A453
-P 3550 2500
-AR Path="/5881A453" Ref="P2"  Part="1" 
-AR Path="/58815CE4/5881A453" Ref="P2"  Part="1" 
-F 0 "P2" H 3650 2650 50  0000 C CNN
-F 1 "UART Conn" V 3500 2450 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 3550 2500 50  0001 C CNN
-F 3 "" H 3550 2500 50  0000 C CNN
-	1    3550 2500
-	1    0    0    1   
+P 3550 2450
+F 0 "P2" H 3550 2700 50  0000 C CNN
+F 1 "UART Conn" V 3650 2450 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 3550 2450 50  0001 C CNN
+F 3 "" H 3550 2450 50  0000 C CNN
+	1    3550 2450
+	-1   0    0    -1  
 $EndComp
 $Comp
-L Connector:Conn_01x04_Male P3
+L CONN_01X04 P3
 U 1 1 5881A45A
-P 3550 4300
-AR Path="/5881A45A" Ref="P3"  Part="1" 
-AR Path="/58815CE4/5881A45A" Ref="P3"  Part="1" 
-F 0 "P3" H 3600 4450 50  0000 C CNN
-F 1 "Debug Conn" V 3450 4250 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 3550 4300 50  0001 C CNN
-F 3 "" H 3550 4300 50  0000 C CNN
-	1    3550 4300
-	1    0    0    1   
+P 3550 4250
+F 0 "P3" H 3550 4500 50  0000 C CNN
+F 1 "Debug Conn" V 3650 4250 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 3550 4250 50  0001 C CNN
+F 3 "" H 3550 4250 50  0000 C CNN
+	1    3550 4250
+	-1   0    0    -1  
 $EndComp
 $Comp
-L draw:EFM32HG309 U1
+L CONN_01X04 P1
+U 1 1 5881A461
+P 2500 3300
+F 0 "P1" H 2500 3550 50  0000 C CNN
+F 1 "I2C Conn" V 2600 3300 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 2500 3300 50  0001 C CNN
+F 3 "" H 2500 3300 50  0000 C CNN
+	1    2500 3300
+	-1   0    0    -1  
+$EndComp
+$Comp
+L EFM32HG309 U1
 U 1 1 5881A468
 P 5450 4150
 F 0 "U1" H 5450 4050 60  0000 C CNN
@@ -63,7 +113,7 @@ F 3 "" H 5350 4450 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R6
+L R_Small R6
 U 1 1 5881A46F
 P 6550 2850
 F 0 "R6" V 6550 2800 50  0000 L CNN
@@ -74,7 +124,7 @@ F 3 "" H 6550 2850 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_Small R7
+L R_Small R7
 U 1 1 5881A476
 P 6550 2950
 F 0 "R7" V 6550 2900 50  0000 L CNN
@@ -85,7 +135,7 @@ F 3 "" H 6550 2950 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L power:+3.3V #PWR02
+L +3.3V #PWR02
 U 1 1 5881A47D
 P 6750 3250
 F 0 "#PWR02" H 6750 3100 50  0001 C CNN
@@ -96,7 +146,7 @@ F 3 "" H 6750 3250 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C3
+L C_Small C3
 U 1 1 5881A483
 P 6750 4050
 F 0 "C3" H 6760 4120 50  0000 L CNN
@@ -107,7 +157,7 @@ F 3 "" H 6750 4050 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C2
+L C_Small C2
 U 1 1 5881A48A
 P 6550 4050
 F 0 "C2" H 6560 4120 50  0000 L CNN
@@ -118,7 +168,7 @@ F 3 "" H 6550 4050 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR03
+L GND #PWR03
 U 1 1 5881A491
 P 3850 3550
 F 0 "#PWR03" H 3850 3300 50  0001 C CNN
@@ -129,7 +179,7 @@ F 3 "" H 3850 3550 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR04
+L GND #PWR04
 U 1 1 5881A497
 P 3850 4450
 F 0 "#PWR04" H 3850 4200 50  0001 C CNN
@@ -140,7 +190,7 @@ F 3 "" H 3850 4450 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR05
+L GND #PWR05
 U 1 1 5881A49D
 P 3850 2700
 F 0 "#PWR05" H 3850 2450 50  0001 C CNN
@@ -151,7 +201,7 @@ F 3 "" H 3850 2700 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3V #PWR06
+L +3.3V #PWR06
 U 1 1 5881A4A3
 P 3850 4000
 F 0 "#PWR06" H 3850 3850 50  0001 C CNN
@@ -162,7 +212,7 @@ F 3 "" H 3850 4000 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3V #PWR07
+L +3.3V #PWR07
 U 1 1 5881A4A9
 P 3850 2200
 F 0 "#PWR07" H 3850 2050 50  0001 C CNN
@@ -173,7 +223,7 @@ F 3 "" H 3850 2200 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3V #PWR08
+L +3.3V #PWR08
 U 1 1 5881A4AF
 P 3850 3100
 F 0 "#PWR08" H 3850 2950 50  0001 C CNN
@@ -188,7 +238,7 @@ SWD_CLK
 Text Label 4500 3950 0    60   ~ 0
 SWD_IO
 $Comp
-L Device:LED D1
+L LED D1
 U 1 1 5881A4B7
 P 7050 3400
 F 0 "D1" H 7050 3500 50  0000 C CNN
@@ -199,7 +249,7 @@ F 3 "" H 7050 3400 50  0000 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:R_Small R8
+L R_Small R8
 U 1 1 5881A4BE
 P 7050 3650
 F 0 "R8" H 7100 3650 50  0000 L CNN
@@ -210,7 +260,7 @@ F 3 "" H 7050 3650 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR09
+L GND #PWR09
 U 1 1 5881A4CC
 P 5150 4750
 F 0 "#PWR09" H 5150 4500 50  0001 C CNN
@@ -221,7 +271,7 @@ F 3 "" H 5150 4750 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C1
+L C_Small C1
 U 1 1 5881A4D2
 P 6300 2350
 F 0 "C1" H 6100 2350 50  0000 L CNN
@@ -232,7 +282,7 @@ F 3 "" H 6300 2350 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR010
+L GND #PWR010
 U 1 1 5881A4D9
 P 6300 2500
 F 0 "#PWR010" H 6300 2250 50  0001 C CNN
@@ -259,7 +309,7 @@ GND
 Text HLabel 4800 3050 0    60   Input ~ 0
 GPIO_PB11
 $Comp
-L draw:TPD4E002 U2
+L TPD4E002 U2
 U 1 1 58820C6D
 P 7400 1550
 F 0 "U2" H 7550 1500 60  0000 C CNN
@@ -270,7 +320,7 @@ F 3 "" H 7400 1550 60  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:GND #PWR011
+L GND #PWR011
 U 1 1 588212BD
 P 7600 1600
 F 0 "#PWR011" H 7600 1350 50  0001 C CNN
@@ -280,6 +330,7 @@ F 3 "" H 7600 1600 50  0000 C CNN
 	1    7600 1600
 	1    0    0    -1  
 $EndComp
+NoConn ~ 7250 3050
 NoConn ~ 5150 3150
 NoConn ~ 5150 3250
 NoConn ~ 5150 3550
@@ -287,7 +338,7 @@ NoConn ~ 5150 3650
 NoConn ~ 7100 2250
 NoConn ~ 7250 2250
 $Comp
-L power:PWR_FLAG #FLG012
+L PWR_FLAG #FLG012
 U 1 1 58822FBE
 P 6700 2750
 F 0 "#FLG012" H 6700 2845 50  0001 C CNN
@@ -299,7 +350,7 @@ F 3 "" H 6700 2750 50  0000 C CNN
 $EndComp
 NoConn ~ 5150 2750
 $Comp
-L Device:Ferrite_Bead_Small L1
+L Ferrite_Bead_Small L1
 U 1 1 58834258
 P 7100 2750
 F 0 "L1" V 7150 2800 50  0000 L CNN
@@ -310,7 +361,7 @@ F 3 "" H 7100 2750 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:C_Small C6
+L C_Small C6
 U 1 1 58848677
 P 6450 2350
 F 0 "C6" H 6460 2420 50  0000 L CNN
@@ -319,6 +370,28 @@ F 2 "Capacitors_SMD:C_0805_HandSoldering" H 6450 2350 50  0001 C CNN
 F 3 "" H 6450 2350 50  0000 C CNN
 	1    6450 2350
 	1    0    0    -1  
+$EndComp
+$Comp
+L PWR_FLAG #FLG013
+U 1 1 588E9D77
+P 7250 4000
+F 0 "#FLG013" H 7250 4095 50  0001 C CNN
+F 1 "PWR_FLAG" H 7250 4180 50  0000 C CNN
+F 2 "" H 7250 4000 50  0000 C CNN
+F 3 "" H 7250 4000 50  0000 C CNN
+	1    7250 4000
+	0    1    1    0   
+$EndComp
+$Comp
+L SW_Push SW1
+U 1 1 588F2FDA
+P 4950 4450
+F 0 "SW1" H 5000 4550 50  0000 L CNN
+F 1 "SW_Push" H 4950 4390 50  0000 C CNN
+F 2 "draw:Tact" H 4950 4650 50  0001 C CNN
+F 3 "" H 4950 4650 50  0000 C CNN
+	1    4950 4450
+	0    1    1    0   
 $EndComp
 Wire Wire Line
 	6300 2450 6300 2500
@@ -340,17 +413,23 @@ Wire Wire Line
 	7050 3750 7050 3850
 Connection ~ 6750 3250
 Wire Wire Line
-	6650 2850 6950 2850
+	7250 3150 7250 4250
 Wire Wire Line
-	6650 2950 6800 2950
+	6450 2850 6450 2850
+Wire Wire Line
+	6650 2850 7250 2850
+Wire Wire Line
+	6450 2950 6450 2950
+Wire Wire Line
+	6650 2950 7250 2950
 Wire Wire Line
 	6450 3150 6450 3250
 Wire Wire Line
-	6450 3250 6750 3250
+	6450 3250 7050 3250
 Wire Wire Line
 	6450 3450 6750 3450
 Wire Wire Line
-	6750 3250 6750 3450
+	6750 3250 6750 3950
 Wire Wire Line
 	6750 3550 6450 3550
 Connection ~ 6750 3450
@@ -366,7 +445,7 @@ Connection ~ 6750 3750
 Wire Wire Line
 	6450 4150 6450 4050
 Wire Wire Line
-	6450 4150 6550 4150
+	6450 4150 7250 4150
 Connection ~ 7250 4150
 Connection ~ 6750 4150
 Connection ~ 6750 3850
@@ -382,11 +461,11 @@ Wire Wire Line
 Wire Wire Line
 	3850 4400 3850 4450
 Wire Wire Line
-	2700 3150 3250 3150
+	2700 3150 3850 3150
 Wire Wire Line
 	3850 3150 3850 3100
 Wire Wire Line
-	2700 3450 2800 3450
+	2700 3450 3850 3450
 Wire Wire Line
 	3850 3450 3850 3550
 Wire Wire Line
@@ -422,15 +501,17 @@ Wire Wire Line
 Wire Wire Line
 	4950 2950 5150 2950
 Wire Wire Line
-	2700 3350 2950 3350
+	2700 3350 5150 3350
 Wire Wire Line
 	4350 3250 4350 3450
 Wire Wire Line
 	4350 3450 5150 3450
 Wire Wire Line
-	6300 2250 6450 2250
+	7250 2750 7200 2750
 Wire Wire Line
-	6450 2750 6550 2750
+	6300 2250 6550 2250
+Wire Wire Line
+	6450 2750 7000 2750
 Wire Wire Line
 	6550 2250 6550 2750
 Connection ~ 6550 2750
@@ -442,13 +523,17 @@ Wire Wire Line
 Wire Wire Line
 	5150 4650 5150 4750
 Wire Wire Line
+	7250 3350 7650 3350
+Connection ~ 7250 3350
+Wire Wire Line
 	6300 2450 6450 2450
 Connection ~ 6300 2450
 Connection ~ 6450 2250
+Connection ~ 7250 4000
 Text Label 4700 3350 0    60   ~ 0
 I2C0_SDA
 Wire Wire Line
-	2700 3250 3100 3250
+	2700 3250 4350 3250
 Wire Wire Line
 	2950 3000 2950 3350
 Wire Wire Line
@@ -465,10 +550,10 @@ Wire Wire Line
 	6950 2250 6950 2850
 Connection ~ 6950 2850
 $Comp
-L power:GND #PWR0101
+L GND #PWR?
 U 1 1 58948119
 P 5100 3950
-F 0 "#PWR0101" H 5100 3700 50  0001 C CNN
+F 0 "#PWR?" H 5100 3700 50  0001 C CNN
 F 1 "GND" H 5000 3850 50  0000 C CNN
 F 2 "" H 5100 3950 50  0000 C CNN
 F 3 "" H 5100 3950 50  0000 C CNN
@@ -477,109 +562,4 @@ F 3 "" H 5100 3950 50  0000 C CNN
 $EndComp
 Wire Wire Line
 	5150 3950 5100 3950
-Wire Wire Line
-	2800 3450 3850 3450
-Wire Wire Line
-	6750 3250 7050 3250
-Wire Wire Line
-	6750 3450 6750 3550
-Wire Wire Line
-	6750 3550 6750 3650
-Wire Wire Line
-	6750 3650 6750 3750
-Wire Wire Line
-	6750 3750 6750 3850
-Wire Wire Line
-	7250 4150 7250 4250
-Wire Wire Line
-	6750 4150 7250 4150
-Wire Wire Line
-	6750 3850 6750 3950
-Wire Wire Line
-	6550 4150 6750 4150
-Wire Wire Line
-	6550 2750 6700 2750
-Wire Wire Line
-	6700 2750 7000 2750
-Wire Wire Line
-	7250 3350 7250 3850
-Wire Wire Line
-	6450 2250 6550 2250
-Wire Wire Line
-	3100 3250 4350 3250
-Wire Wire Line
-	2950 3350 5150 3350
-Wire Wire Line
-	3250 3150 3850 3150
-$Comp
-L Connector:Conn_01x04_Male P1
-U 1 1 5881A461
-P 2500 3350
-AR Path="/5881A461" Ref="P1"  Part="1" 
-AR Path="/58815CE4/5881A461" Ref="P1"  Part="1" 
-F 0 "P1" H 2650 3500 50  0000 C CNN
-F 1 "I2C Conn" V 2450 3300 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 2500 3350 50  0001 C CNN
-F 3 "" H 2500 3350 50  0000 C CNN
-	1    2500 3350
-	1    0    0    1   
-$EndComp
-$Comp
-L Switch:SW_Push SW1
-U 1 1 588F2FDA
-P 4950 4450
-AR Path="/588F2FDA" Ref="SW1"  Part="1" 
-AR Path="/58815CE4/588F2FDA" Ref="SW1"  Part="1" 
-F 0 "SW1" H 5000 4550 50  0000 L CNN
-F 1 "SW_Push" H 4950 4390 50  0000 C CNN
-F 2 "draw:Tact" H 4950 4650 50  0001 C CNN
-F 3 "" H 4950 4650 50  0000 C CNN
-	1    4950 4450
-	0    1    1    0   
-$EndComp
-$Comp
-L Connector:USB_OTG P4
-U 1 1 5881A446
-P 7750 2950
-AR Path="/5881A446" Ref="P4"  Part="1" 
-AR Path="/58815CE4/5881A446" Ref="P4"  Part="1" 
-F 0 "P4" H 7900 3300 50  0000 C CNN
-F 1 "USB_OTG" V 7450 2950 50  0000 C CNN
-F 2 "Connect:USB_Micro-B" V 7700 2850 50  0001 C CNN
-F 3 "" V 7700 2850 50  0000 C CNN
-	1    7750 2950
-	-1   0    0    -1  
-$EndComp
-Wire Wire Line
-	7250 3350 7750 3350
-Wire Wire Line
-	7750 3350 7850 3350
-Connection ~ 7750 3350
-Wire Wire Line
-	7450 3050 7350 3050
-Wire Wire Line
-	7350 3050 7350 2850
-Wire Wire Line
-	6950 2850 7350 2850
-Wire Wire Line
-	6800 2950 7450 2950
-NoConn ~ 7450 3150
-Wire Wire Line
-	7250 4000 7250 4150
-Wire Wire Line
-	7250 3850 7250 4000
-Connection ~ 7250 4000
-$Comp
-L power:PWR_FLAG #FLG013
-U 1 1 588E9D77
-P 7250 4000
-F 0 "#FLG013" H 7250 4095 50  0001 C CNN
-F 1 "PWR_FLAG" H 7250 4180 50  0000 C CNN
-F 2 "" H 7250 4000 50  0000 C CNN
-F 3 "" H 7250 4000 50  0000 C CNN
-	1    7250 4000
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	7200 2750 7450 2750
 $EndSCHEMATC

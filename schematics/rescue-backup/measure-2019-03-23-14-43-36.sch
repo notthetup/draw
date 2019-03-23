@@ -1,6 +1,38 @@
-EESchema Schematic File Version 4
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:draw
+LIBS:switches
+LIBS:silabs
 LIBS:draw-cache
-EELAYER 29 0
+EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -15,7 +47,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L draw:INA260 U3
+L INA260 U3
 U 1 1 5881C68E
 P 5550 4200
 F 0 "U3" H 5650 4100 60  0000 C CNN
@@ -26,7 +58,7 @@ F 3 "" H 5550 4200 60  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R9
+L R_Small R9
 U 1 1 5881C6C5
 P 4950 3650
 F 0 "R9" V 4850 3600 50  0000 L CNN
@@ -37,7 +69,7 @@ F 3 "" H 4950 3650 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_Small R10
+L R_Small R10
 U 1 1 5881C6FE
 P 4950 3750
 F 0 "R10" V 5050 3700 50  0000 L CNN
@@ -48,7 +80,7 @@ F 3 "" H 4950 3750 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_Small R11
+L R_Small R11
 U 1 1 5881C9C3
 P 4950 4150
 F 0 "R11" V 4850 4100 50  0000 L CNN
@@ -59,7 +91,7 @@ F 3 "" H 4950 4150 50  0000 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R_Small R12
+L R_Small R12
 U 1 1 5881C9C9
 P 4950 4250
 F 0 "R12" V 5050 4200 50  0000 L CNN
@@ -74,30 +106,26 @@ GND
 Text HLabel 7150 3900 2    60   Input ~ 0
 3.3V
 $Comp
-L Connector:Screw_Terminal_01x02 P6
+L CONN_01X02 P6
 U 1 1 5881CF01
-P 7000 3050
-AR Path="/5881CF01" Ref="P6"  Part="1" 
-AR Path="/5881B945/5881CF01" Ref="P6"  Part="1" 
-F 0 "P6" H 7000 3200 50  0000 C CNN
-F 1 "Power_OUT" V 7100 3050 50  0000 C CNN
-F 2 "Terminal_Blocks:TerminalBlock_Pheonix_MKDS1.5-2pol" H 7000 3050 50  0001 C CNN
-F 3 "" H 7000 3050 50  0000 C CNN
-	1    7000 3050
+P 7000 3100
+F 0 "P6" H 7000 3250 50  0000 C CNN
+F 1 "Power_OUT" V 7100 3100 50  0000 C CNN
+F 2 "Terminal_Blocks:TerminalBlock_Pheonix_MKDS1.5-2pol" H 7000 3100 50  0001 C CNN
+F 3 "" H 7000 3100 50  0000 C CNN
+	1    7000 3100
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:Screw_Terminal_01x02 P5
+L CONN_01X02 P5
 U 1 1 5881CF96
-P 4700 3100
-AR Path="/5881CF96" Ref="P5"  Part="1" 
-AR Path="/5881B945/5881CF96" Ref="P5"  Part="1" 
-F 0 "P5" H 4700 3250 50  0000 C CNN
-F 1 "Power_IN" V 4800 3100 50  0000 C CNN
-F 2 "Terminal_Blocks:TerminalBlock_Pheonix_MKDS1.5-2pol" H 4700 3100 50  0001 C CNN
-F 3 "" H 4700 3100 50  0000 C CNN
-	1    4700 3100
-	-1   0    0    -1  
+P 4700 3150
+F 0 "P5" H 4700 3300 50  0000 C CNN
+F 1 "Power_IN" V 4800 3150 50  0000 C CNN
+F 2 "Terminal_Blocks:TerminalBlock_Pheonix_MKDS1.5-2pol" H 4700 3150 50  0001 C CNN
+F 3 "" H 4700 3150 50  0000 C CNN
+	1    4700 3150
+	-1   0    0    1   
 $EndComp
 Text HLabel 7650 3550 2    60   Input ~ 0
 I2C_SDA
@@ -106,7 +134,7 @@ I2C_SCL
 Text HLabel 7750 3750 2    60   Input ~ 0
 ALERT
 $Comp
-L Device:R_Small R13
+L R_Small R13
 U 1 1 58841DD5
 P 7250 3100
 F 0 "R13" H 7280 3120 50  0000 L CNN
@@ -117,7 +145,7 @@ F 3 "" H 7250 3100 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R14
+L R_Small R14
 U 1 1 58841E1B
 P 7400 3300
 F 0 "R14" H 7430 3320 50  0000 L CNN
@@ -128,7 +156,7 @@ F 3 "" H 7400 3300 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R15
+L R_Small R15
 U 1 1 58841E6E
 P 7600 3400
 F 0 "R15" H 7630 3420 50  0000 L CNN
@@ -139,7 +167,7 @@ F 3 "" H 7600 3400 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C4
+L C_Small C4
 U 1 1 58842FC4
 P 6850 4000
 F 0 "C4" H 6700 4050 50  0000 L CNN
@@ -150,7 +178,7 @@ F 3 "" H 6850 4000 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C_Small C5
+L C_Small C5
 U 1 1 58847B1B
 P 5250 3550
 F 0 "C5" H 5150 3650 50  0000 L CNN
@@ -161,7 +189,7 @@ F 3 "" H 5250 3550 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3VA #PWR014
+L +3.3VA #PWR014
 U 1 1 588F0CB3
 P 6950 3850
 F 0 "#PWR014" H 6950 3700 50  0001 C CNN
@@ -172,7 +200,7 @@ F 3 "" H 6950 3850 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3VA #PWR015
+L +3.3VA #PWR015
 U 1 1 588F18A1
 P 4700 3650
 F 0 "#PWR015" H 4700 3500 50  0001 C CNN
@@ -183,7 +211,7 @@ F 3 "" H 4700 3650 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3VA #PWR016
+L +3.3VA #PWR016
 U 1 1 588F1952
 P 4700 4150
 F 0 "#PWR016" H 4700 4000 50  0001 C CNN
@@ -194,7 +222,7 @@ F 3 "" H 4700 4150 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3VA #PWR017
+L +3.3VA #PWR017
 U 1 1 588F1A71
 P 7250 3000
 F 0 "#PWR017" H 7250 2850 50  0001 C CNN
@@ -205,7 +233,7 @@ F 3 "" H 7250 3000 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GNDA #PWR018
+L GNDA #PWR018
 U 1 1 588F1B2E
 P 4700 4250
 F 0 "#PWR018" H 4700 4000 50  0001 C CNN
@@ -216,7 +244,7 @@ F 3 "" H 4700 4250 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GNDA #PWR019
+L GNDA #PWR019
 U 1 1 588F1B73
 P 4700 3750
 F 0 "#PWR019" H 4700 3500 50  0001 C CNN
@@ -227,7 +255,7 @@ F 3 "" H 4700 3750 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GNDA #PWR020
+L GNDA #PWR020
 U 1 1 588F1C0C
 P 5050 2850
 F 0 "#PWR020" H 5050 2600 50  0001 C CNN
@@ -238,7 +266,7 @@ F 3 "" H 5050 2850 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GNDA #PWR021
+L GNDA #PWR021
 U 1 1 588F1CBD
 P 6700 2850
 F 0 "#PWR021" H 6700 2600 50  0001 C CNN
@@ -249,7 +277,7 @@ F 3 "" H 6700 2850 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GNDA #PWR022
+L GNDA #PWR022
 U 1 1 588F1D56
 P 6700 4100
 F 0 "#PWR022" H 6700 3850 50  0001 C CNN
@@ -260,7 +288,7 @@ F 3 "" H 6700 4100 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GNDA #PWR023
+L GNDA #PWR023
 U 1 1 588F1F34
 P 5250 3650
 F 0 "#PWR023" H 5250 3400 50  0001 C CNN
@@ -283,26 +311,27 @@ Wire Wire Line
 Wire Wire Line
 	4700 4250 4850 4250
 Wire Wire Line
-	5050 3650 5050 3750
+	5050 3650 5050 3800
 Wire Wire Line
-	5150 3950 5150 4150
+	5150 3950 5150 4250
 Wire Wire Line
 	6700 4000 6700 4100
 Wire Wire Line
 	6700 4000 7150 4000
 Wire Wire Line
-	6700 3900 6850 3900
+	6700 3900 7150 3900
 Connection ~ 6950 3900
 Wire Wire Line
-	6700 3150 6700 3200
+	6700 3150 6700 3400
 Connection ~ 6700 3300
 Connection ~ 5350 3300
 Connection ~ 5350 3400
 Wire Wire Line
-	6700 3750 7600 3750
+	6700 3750 7750 3750
 Wire Wire Line
 	6950 3850 6950 3900
 Connection ~ 5350 3200
+Connection ~ 6700 3400
 Connection ~ 6700 3200
 Wire Wire Line
 	7250 3200 7250 3550
@@ -312,9 +341,9 @@ Wire Wire Line
 	7600 3500 7600 3750
 Connection ~ 7600 3750
 Wire Wire Line
-	6700 3650 7400 3650
+	6700 3650 7700 3650
 Wire Wire Line
-	6700 3550 7250 3550
+	6700 3550 7650 3550
 Wire Wire Line
 	7400 3400 7400 3650
 Connection ~ 7400 3650
@@ -338,7 +367,7 @@ Wire Wire Line
 	5350 3950 5150 3950
 Connection ~ 5150 4150
 Wire Wire Line
-	5350 3200 5350 3300
+	5350 3200 5350 3600
 Wire Wire Line
 	5350 3200 4900 3200
 Wire Wire Line
@@ -356,28 +385,4 @@ Wire Wire Line
 Wire Wire Line
 	7400 3000 7400 3200
 Connection ~ 7250 3000
-Wire Wire Line
-	6950 3900 7150 3900
-Wire Wire Line
-	6700 3300 6700 3400
-Wire Wire Line
-	5350 3300 5350 3400
-Wire Wire Line
-	5350 3400 5350 3450
-Wire Wire Line
-	6700 3200 6700 3300
-Wire Wire Line
-	7600 3750 7750 3750
-Wire Wire Line
-	7400 3650 7700 3650
-Wire Wire Line
-	7250 3550 7650 3550
-Wire Wire Line
-	6850 3900 6950 3900
-Wire Wire Line
-	5350 3450 5350 3600
-Wire Wire Line
-	5050 3750 5050 3800
-Wire Wire Line
-	5150 4150 5150 4250
 $EndSCHEMATC
