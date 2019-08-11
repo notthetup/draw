@@ -20,11 +20,11 @@
 ## along with this library.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
-LIBNAME		= opencm3_efm32hg
-DEFS		+= -DEFM32HG
+LIBNAME	 = opencm3_efm32hg
+DEFS		+= -DEFM32HG -D_POSIX_C_SOURCE=200809L
 
-FP_FLAGS	?= -mfloat-abi=soft
+FP_FLAGS	 ?= -mfloat-abi=soft
 ARCH_FLAGS	= -mthumb -mcpu=cortex-m0plus $(FP_FLAGS)
-DEFS            += -I../include
+DEFS       += -I../include
 
 include ../libopencm3_rules.mk

@@ -41,7 +41,10 @@ draw.o: draw.c ../libopencm3//include/libopencm3/cm3/common.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/lock.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/types.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_pthreadtypes.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/sched.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_timespec.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/types.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/stdio.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/string.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/xlocale.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/string.h

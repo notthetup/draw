@@ -1,7 +1,7 @@
-all: draw
+all: draw/draw.bin
 	@true
 
-draw: libopencm3
+draw/draw.bin: libopencm3
 	make -C draw
 
 libopencm3:
@@ -9,11 +9,11 @@ libopencm3:
 	git submodule update
 	make -C libopencm3
 
-flash: draw
+flash: draw/draw.bin
 		dfu-util -d 1209:70b1 -D draw/draw.bin
 
 clean:
 	make -C libopencm3 clean
 	make -C draw clean
 
-.PHONY: libopencm3 flash draw
+.PHONY: libopencm3 flash

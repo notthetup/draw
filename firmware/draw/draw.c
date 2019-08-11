@@ -296,7 +296,7 @@ int main(void)
 	nvic_enable_irq(NVIC_USB_IRQ);
 
     while(1) {
-        usb_puts("toggling LED\n\r");
+        usb_puts("Toggling LED\n\r");
         gpio_toggle(LED_RED_PORT, LED_RED_PIN);
         for(i = 0; i != 500000; ++i)
 			__asm__("nop");
