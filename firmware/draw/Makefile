@@ -20,4 +20,6 @@
 BINARY = draw
 LDSCRIPT = ../tomu-efm32hg309.ld
 
+OBJS=ina260.o usbcdc.o
+
 include ../efm32hg.mk

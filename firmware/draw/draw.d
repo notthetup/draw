@@ -1,11 +1,34 @@
-draw.o: draw.c ../libopencm3//include/libopencm3/cm3/common.h \
+draw.o: draw.c \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/stdio.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/_ansi.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/newlib.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/_newlib_version.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/config.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/ieeefp.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/features.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/cdefs.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_default_types.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-none-eabi/8.2.1/include/stddef.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-none-eabi/8.2.1/include/stdarg.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/reent.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/_ansi.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_types.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_types.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/lock.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/types.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_pthreadtypes.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/sched.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_timespec.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/types.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/stdio.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/string.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/xlocale.h \
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/string.h \
+ usbcdc.h ../libopencm3//include/libopencm3/cm3/common.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-none-eabi/8.2.1/include/stdint.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/stdint.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_default_types.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/features.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/_newlib_version.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_intsup.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-none-eabi/8.2.1/include/stdbool.h \
  ../libopencm3//include/libopencm3/cm3/vector.h \
  ../libopencm3//include/libopencm3/cm3/nvic.h \
@@ -25,29 +48,7 @@ draw.o: draw.c ../libopencm3//include/libopencm3/cm3/common.h \
  ../libopencm3//include/libopencm3/efm32/hg/gpio.h \
  ../libopencm3//include/libopencm3/efm32/common/gpio_common_hglg.h \
  ../libopencm3//include/libopencm3/efm32/cmu.h \
- ../libopencm3//include/libopencm3/efm32/hg/cmu.h \
+ ../libopencm3//include/libopencm3/efm32/hg/cmu.h ina260.h \
  ../libopencm3//include/libopencm3/efm32/i2c.h \
  ../libopencm3//include/libopencm3/efm32/hg/i2c.h \
- ../libopencm3//include/libopencm3/efm32/common/i2c_common_hglg.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/stdio.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/_ansi.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/newlib.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/config.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/ieeefp.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/cdefs.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-none-eabi/8.2.1/include/stddef.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-none-eabi/8.2.1/include/stdarg.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/reent.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/_ansi.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_types.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/_types.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/lock.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/types.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_pthreadtypes.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/sched.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_timespec.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/types.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/stdio.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/string.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/xlocale.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/string.h
+ ../libopencm3//include/libopencm3/efm32/common/i2c_common_hglg.h
