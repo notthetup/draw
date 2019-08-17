@@ -26,6 +26,9 @@ draw.o: draw.c ../libopencm3//include/libopencm3/cm3/common.h \
  ../libopencm3//include/libopencm3/efm32/common/gpio_common_hglg.h \
  ../libopencm3//include/libopencm3/efm32/cmu.h \
  ../libopencm3//include/libopencm3/efm32/hg/cmu.h \
+ ../libopencm3//include/libopencm3/efm32/i2c.h \
+ ../libopencm3//include/libopencm3/efm32/hg/i2c.h \
+ ../libopencm3//include/libopencm3/efm32/common/i2c_common_hglg.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/stdio.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/_ansi.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/newlib.h \
