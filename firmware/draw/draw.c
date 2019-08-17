@@ -68,6 +68,9 @@
 
 bool g_usbd_is_connected = false;
 usbd_device *g_usbd_dev = 0;
+bool start = false;
+
+static void usb_printf(char* format, ...);
 
 static const struct usb_device_descriptor dev = {
   .bLength = USB_DT_DEVICE_SIZE,
@@ -236,6 +239,7 @@ static void cdcacm_data_rx_cb(usbd_device *usbd_dev, uint8_t ep){
   (void)ep;
   char buf[64];
   int len = usbd_ep_read_packet(usbd_dev, 0x01, buf, 64);
+  if (len > 0 && buf[0] == 's') start = true;
 }
 
 static void cdcacm_set_config(usbd_device *usbd_dev, uint16_t wValue){
@@ -311,9 +315,13 @@ int main(void)
     /* Enable USB IRQs */
   nvic_enable_irq(NVIC_USB_IRQ);
 
+  while( start == false){
+    __asm__("nop");
+  }
+
   i2c_init(I2C0, true);
   rv = i2c_bus_freq_set(I2C0, 21000000, 93000);  /** High frequency peripheral clock */
-  usb_printf("Bus RV %d", rv);
+  usb_printf("Bus RV %d\r\n", rv);
 
   txbuf = INA260_MANUFACTURER_REG;
   while(1) {
