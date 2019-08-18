@@ -18,28 +18,12 @@
 #include <string.h>
 #include "usbcdc.h"
 #include "ina260.h"
+#include "utils.h"
 
 #include "toboot.h"
 TOBOOT_CONFIGURATION(0);
 
-void udelay_busy(uint32_t);
 void board_init(void);
-
-/* This busywait loop is roughly accurate when running at 24 MHz. */
-void udelay_busy(uint32_t usecs){
-    while (usecs --> 0) {
-        /* This inner loop is 3 instructions, one of which is a branch.
-         * This gives us 4 cycles total.
-         * We want to sleep for 1 usec, and there are cycles per usec at 24 MHz.
-         * Therefore, loop 6 times, as 6*4=24.
-         */
-        __asm("mov   r1, #6");
-        __asm("retry:");
-        __asm("sub r1, #1");
-        __asm("bne retry");
-        __asm("nop");
-    }
-}
 
 void board_init(){
   /*Init peripheral clocks*/
@@ -73,9 +57,9 @@ int main(void)
 
   while(1) {
     int v = ina260_getV(I2C0);
-    udelay_busy(100);
+    udelay_busy(100000);
     int c = ina260_getC(I2C0);
-    udelay_busy(100);
+    udelay_busy(100000);
     int p = ina260_getP(I2C0);
 
     usb_printf("V : %d, C : %d, P : %d \r\n", v, c, p);
