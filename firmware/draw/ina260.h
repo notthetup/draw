@@ -9,4 +9,8 @@
 #define INA260_MANUFACTURER_REG 0xFE
 
 
-int ina260_init(void);
+int ina260_init(int i2c);
+
+int ina260_getV(int i2c);
+int ina260_getC(int i2c);
+int ina260_getP(int i2c);

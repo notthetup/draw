@@ -22,11 +22,13 @@
 #include "toboot.h"
 TOBOOT_CONFIGURATION(0);
 
+bool ina260_initialized = false;
+
 void udelay_busy(uint32_t);
+void board_init(void);
 
 /* This busywait loop is roughly accurate when running at 24 MHz. */
-void udelay_busy(uint32_t usecs)
-{
+void udelay_busy(uint32_t usecs){
     while (usecs --> 0) {
         /* This inner loop is 3 instructions, one of which is a branch.
          * This gives us 4 cycles total.
@@ -41,26 +43,47 @@ void udelay_busy(uint32_t usecs)
     }
 }
 
-
-int main(void)
-{
-  /* Disable the watchdog that the bootloader started. */
-  WDOG_CTRL = 0;
-
+void board_init(){
   /*Init I2C peripheral clock*/
   cmu_periph_clock_enable(CMU_I2C0);
 
+  /*Setup Pins for I2C*/
   gpio_mode_setup(GPIOC, GPIO_MODE_WIRED_AND, 0); // PC0 - I2C0-SDA
   gpio_mode_setup(GPIOC, GPIO_MODE_WIRED_AND, 1); // PC1 - I2C0-SCL
 
   gpio_set(GPIOC,0);
   gpio_set(GPIOC,1);
+}
 
+
+int main(void)
+{
+  int rv;
+  /* Disable the watchdog that the bootloader started. */
+  WDOG_CTRL = 0;
+
+  board_init();
   usb_cdc_init();
 
+  usb_cdc_wait_for_start();
+
+  rv = ina260_init(I2C0);
+  if (rv < 0){
+    usb_printf("# INA260 Init Error %d\r\n", rv);
+  }else{
+    ina260_initialized = true;
+  }
+
   while(1) {
-    usb_printf("hello world\r\n");
-    // gpio_toggle(LED_RED_PORT, LED_RED_PIN);
+    if (ina260_initialized){
+      int v = ina260_getV(I2C0);
+      int c = ina260_getC(I2C0);
+      int p = ina260_getP(I2C0);
+
+      usb_printf("V : %d, C : %d, P : %d \r\n", v, c, p);
+    }else{
+      usb_printf("# Idle \r\n");
+    }
     udelay_busy(300000);
   }
 }

@@ -6,6 +6,7 @@
 
 static volatile bool g_usbd_is_connected = false;
 static usbd_device *g_usbd_dev = 0;
+static int start = false;
 
 static const struct usb_device_descriptor dev = {
   .bLength = USB_DT_DEVICE_SIZE,
@@ -178,7 +179,7 @@ void cdcacm_data_rx_cb(usbd_device *usbd_dev, uint8_t ep){
 
   char buf[64];
   int len = usbd_ep_read_packet(usbd_dev, 0x01, buf, sizeof(buf));
-  // if (len > 0 && buf[0] == 's') start = true;
+  if (len > 0 && buf[0] == 's') start = true;
 }
 
 void cdcacm_set_config(usbd_device *usbd_dev, uint16_t wValue){
@@ -226,4 +227,10 @@ void usb_cdc_init(void){
 
     /* Enable USB IRQs */
   nvic_enable_irq(NVIC_USB_IRQ);
+}
+
+void usb_cdc_wait_for_start(void){
+  while(!start){
+    __asm("nop");
+  }
 }
