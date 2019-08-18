@@ -4,8 +4,8 @@
 #define PRODUCT_ID                0x70b1    /* Assigned to Tomu project */
 #define DEVICE_VER                0x0101    /* Program version */
 
-bool g_usbd_is_connected = false;
-usbd_device *g_usbd_dev = 0;
+static volatile bool g_usbd_is_connected = false;
+static usbd_device *g_usbd_dev = 0;
 
 static const struct usb_device_descriptor dev = {
   .bLength = USB_DT_DEVICE_SIZE,
@@ -78,7 +78,7 @@ static const struct {
     .bFunctionLength = sizeof(struct usb_cdc_acm_descriptor),
     .bDescriptorType = CS_INTERFACE,
     .bDescriptorSubtype = USB_CDC_TYPE_ACM,
-    .bmCapabilities = 0,
+    .bmCapabilities = 6,
   },
   .cdc_union = {
     .bFunctionLength = sizeof(struct usb_cdc_union_descriptor),
@@ -142,9 +142,9 @@ static const struct usb_config_descriptor config = {
 };
 
 static const char *usb_strings[] = {
-  "Tomu",
-  "CDC-ACM Demo",
-  "DEMO",
+    "Tomu",
+    "CDC-ACM Demo",
+    "DEMO",
 };
 
 /* Buffer to be used for control requests. */
@@ -157,13 +157,16 @@ enum usbd_request_return_codes cdcacm_control_request(usbd_device *usbd_dev, str
 
   switch(req->bRequest) {
   case USB_CDC_REQ_SET_CONTROL_LINE_STATE: {
-        g_usbd_is_connected = req->wValue & 1; /* Check RTS bit */
-    return USBD_REQ_HANDLED;
-    }
+      g_usbd_is_connected = req->wValue & 1; /* Check RTS bit */
+      // if (!g_usbd_is_connected) /* Note: GPIO polarity is inverted */
+      //     gpio_set(LED_GREEN_PORT, LED_GREEN_PIN);
+      // else
+      //     gpio_clear(LED_GREEN_PORT, LED_GREEN_PIN);
+      return USBD_REQ_HANDLED;
+      }
   case USB_CDC_REQ_SET_LINE_CODING:
     if(*len < sizeof(struct usb_cdc_line_coding))
-      return 0;
-
+        return 0;
     return USBD_REQ_HANDLED;
   }
   return 0;
@@ -172,8 +175,9 @@ enum usbd_request_return_codes cdcacm_control_request(usbd_device *usbd_dev, str
 /* Simple callback that echoes whatever is sent */
 void cdcacm_data_rx_cb(usbd_device *usbd_dev, uint8_t ep){
   (void)ep;
+
   char buf[64];
-  int len = usbd_ep_read_packet(usbd_dev, 0x01, buf, 64);
+  int len = usbd_ep_read_packet(usbd_dev, 0x01, buf, sizeof(buf));
   // if (len > 0 && buf[0] == 's') start = true;
 }
 
@@ -192,9 +196,9 @@ void cdcacm_set_config(usbd_device *usbd_dev, uint16_t wValue){
 }
 
 void usb_puts(char *s) {
-    if(g_usbd_is_connected) {
-        usbd_ep_write_packet(g_usbd_dev, 0x82, s, strnlen(s, 64));
-    }
+  if (g_usbd_is_connected) {
+      usbd_ep_write_packet(g_usbd_dev, 0x82, s, strnlen(s, 64));
+  }
 }
 
 void usb_printf(char* format, ...) {

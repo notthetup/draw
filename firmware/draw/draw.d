@@ -51,4 +51,5 @@ draw.o: draw.c \
  ../libopencm3//include/libopencm3/efm32/hg/cmu.h ina260.h \
  ../libopencm3//include/libopencm3/efm32/i2c.h \
  ../libopencm3//include/libopencm3/efm32/hg/i2c.h \
- ../libopencm3//include/libopencm3/efm32/common/i2c_common_hglg.h
+ ../libopencm3//include/libopencm3/efm32/common/i2c_common_hglg.h \
+ ../include/toboot.h

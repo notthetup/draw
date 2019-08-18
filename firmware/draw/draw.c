@@ -19,16 +19,31 @@
 #include "usbcdc.h"
 #include "ina260.h"
 
-/* Default AHB (core clock) frequency of Tomu board */
-#define AHB_FREQUENCY 14000000
+#include "toboot.h"
+TOBOOT_CONFIGURATION(0);
+
+void udelay_busy(uint32_t);
+
+/* This busywait loop is roughly accurate when running at 24 MHz. */
+void udelay_busy(uint32_t usecs)
+{
+    while (usecs --> 0) {
+        /* This inner loop is 3 instructions, one of which is a branch.
+         * This gives us 4 cycles total.
+         * We want to sleep for 1 usec, and there are cycles per usec at 24 MHz.
+         * Therefore, loop 6 times, as 6*4=24.
+         */
+        __asm("mov   r1, #6");
+        __asm("retry:");
+        __asm("sub r1, #1");
+        __asm("bne retry");
+        __asm("nop");
+    }
+}
+
 
 int main(void)
 {
-  int i;
-
-  /* Make sure the vector table is relocated correctly (after the Tomu bootloader) */
-  SCB_VTOR = 0x4000;
-
   /* Disable the watchdog that the bootloader started. */
   WDOG_CTRL = 0;
 
@@ -45,8 +60,7 @@ int main(void)
 
   while(1) {
     usb_printf("hello world\r\n");
-
-      // gpio_toggle(LED_RED_PORT, LED_RED_PIN);
-      for(i = 0; i != 5000000; ++i) __asm__("nop");
+    // gpio_toggle(LED_RED_PORT, LED_RED_PIN);
+    udelay_busy(300000);
   }
 }
