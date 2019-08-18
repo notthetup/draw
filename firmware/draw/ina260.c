@@ -6,13 +6,13 @@ int ina260_init(int i2c){
 	uint8_t txbuf = INA260_MANUFACTURER_REG;
 	uint8_t rxbuf [2] = {0,0};
 
-	i2c_init(I2C0, true);
-	i2c_bus_freq_set(I2C0, 21000000, 93000);
+	i2c_init(i2c, true);
+	i2c_bus_freq_set(i2c, 21000000, 93000);
 
-	rv = i2c_write(I2C0, INA260_SLAVE_ADDRESS, &txbuf, 1);
+	rv = i2c_write(i2c, INA260_SLAVE_ADDRESS, &txbuf, 1);
 	if (rv < 0) return rv;
 
-	rv = i2c_read(I2C0, INA260_SLAVE_ADDRESS, rxbuf, 2);
+	rv = i2c_read(i2c, INA260_SLAVE_ADDRESS, rxbuf, 2);
 	if (rv < 0) return rv;
 
 	if(rxbuf[0] != 0x54 || rxbuf[1] != 0x49) return -9;

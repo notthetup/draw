@@ -22,8 +22,6 @@
 #include "toboot.h"
 TOBOOT_CONFIGURATION(0);
 
-bool ina260_initialized = false;
-
 void udelay_busy(uint32_t);
 void board_init(void);
 
@@ -44,7 +42,8 @@ void udelay_busy(uint32_t usecs){
 }
 
 void board_init(){
-  /*Init I2C peripheral clock*/
+  /*Init peripheral clocks*/
+  cmu_periph_clock_enable(CMU_GPIO);
   cmu_periph_clock_enable(CMU_I2C0);
 
   /*Setup Pins for I2C*/
@@ -70,20 +69,16 @@ int main(void)
   rv = ina260_init(I2C0);
   if (rv < 0){
     usb_printf("# INA260 Init Error %d\r\n", rv);
-  }else{
-    ina260_initialized = true;
   }
 
   while(1) {
-    if (ina260_initialized){
-      int v = ina260_getV(I2C0);
-      int c = ina260_getC(I2C0);
-      int p = ina260_getP(I2C0);
+    int v = ina260_getV(I2C0);
+    udelay_busy(100);
+    int c = ina260_getC(I2C0);
+    udelay_busy(100);
+    int p = ina260_getP(I2C0);
 
-      usb_printf("V : %d, C : %d, P : %d \r\n", v, c, p);
-    }else{
-      usb_printf("# Idle \r\n");
-    }
+    usb_printf("V : %d, C : %d, P : %d \r\n", v, c, p);
     udelay_busy(300000);
   }
 }
