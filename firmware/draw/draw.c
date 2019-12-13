@@ -55,14 +55,13 @@ int main(void)
     usb_printf("# INA260 Init Error %d\r\n", rv);
   }
 
-  while(1) {
-    int v = ina260_getV(I2C0);
-    udelay_busy(100000);
-    int c = ina260_getC(I2C0);
-    udelay_busy(100000);
-    int p = ina260_getP(I2C0);
+  udelay_busy(2000); // delay 2ms to give time for first measurement to finish
 
-    usb_printf("V : %d, C : %d, P : %d \r\n", v, c, p);
-    udelay_busy(300000);
+  while(1) {
+    int pwr = ina260_getP(I2C0);
+    int cur = ina260_getC(I2C0);
+    int vol = ina260_getV(I2C0);
+    usb_printf("V : %10d, C : %10d, P : %10d \r\n", vol, cur, pwr);
+    udelay_busy(2000);
   }
 }

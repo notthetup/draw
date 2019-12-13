@@ -25,7 +25,7 @@ int ina260_getV(int i2c){
 	uint8_t txbuf = INA260_BUS_VOLTAGE_REG;
 	uint8_t rxbuf [2] = {0,0};
 
-	rv = i2c_write(i2c, INA260_SLAVE_ADDRESS, &txbuf, 1, false);
+	rv = i2c_write(i2c, INA260_SLAVE_ADDRESS, &txbuf, 1, true);
 	if (rv < 0) return rv;
 
 	rv = i2c_read(i2c, INA260_SLAVE_ADDRESS, rxbuf, 2, true);
@@ -39,13 +39,13 @@ int ina260_getC(int i2c){
 	uint8_t txbuf = INA260_CURRENT_REG;
 	uint8_t rxbuf [2] = {0,0};
 
-	rv = i2c_write(i2c, INA260_SLAVE_ADDRESS, &txbuf, 1, false);
+	rv = i2c_write(i2c, INA260_SLAVE_ADDRESS, &txbuf, 1, true);
 	if (rv < 0) return rv;
 
 	rv = i2c_read(i2c, INA260_SLAVE_ADDRESS, rxbuf, 2, true);
 	if (rv < 0) return rv;
 
-	return ((rxbuf[0] << 8) + rxbuf[1])*1250;
+	return ((int16_t)((rxbuf[0] << 8) + rxbuf[1]))*1250;
 }
 
 int ina260_getP(int i2c){
@@ -53,11 +53,11 @@ int ina260_getP(int i2c){
 	uint8_t txbuf = INA260_POWER_REG;
 	uint8_t rxbuf [2] = {0,0};
 
-	rv = i2c_write(i2c, INA260_SLAVE_ADDRESS, &txbuf, 1, false);
+	rv = i2c_write(i2c, INA260_SLAVE_ADDRESS, &txbuf, 1, true);
 	if (rv < 0) return rv;
 
 	rv = i2c_read(i2c, INA260_SLAVE_ADDRESS, rxbuf, 2, true);
 	if (rv < 0) return rv;
 
-	return ((rxbuf[0] << 8) + rxbuf[1])*10;
+	return ((int16_t)((rxbuf[0] << 8) + rxbuf[1]))*10;
 }
