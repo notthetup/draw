@@ -57,11 +57,25 @@ int main(void)
 
   udelay_busy(2000); // delay 2ms to give time for first measurement to finish
 
+  uint16_t config = 0;
+  rv = ina260_getConfig(I2C0, &config);
+  if (rv == 0) usb_printf("Config : 0x%04X, \r\n", config);
+
+  rv = ina260_setConfig(I2C0, 0x2763);
+  if (rv < 0) usb_printf("ERR: O - %d\r\n", rv);
+
+  int pwr, vol, cur;
   while(1) {
-    int pwr = ina260_getP(I2C0);
-    int cur = ina260_getC(I2C0);
-    int vol = ina260_getV(I2C0);
+    rv = ina260_getP(I2C0, &pwr);
+    if (rv < 0) usb_printf("ERR: P - %d\r\n", rv);
+    rv = ina260_getC(I2C0, &cur);
+    if (rv < 0) usb_printf("ERR: C - %d\r\n", rv);
+    rv = ina260_getV(I2C0, &vol);
+    if (rv < 0) usb_printf("ERR: V - %d\r\n", rv);
     usb_printf("V : %10d, C : %10d, P : %10d \r\n", vol, cur, pwr);
-    udelay_busy(2000);
+    rv = ina260_getConfig(I2C0, &config);
+    if (rv < 0) usb_printf("ERR: O - %d\r\n", rv);
+    usb_printf("Config : 0x%04X, \r\n", config);
+    udelay_busy(200000);
   }
 }

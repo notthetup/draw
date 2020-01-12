@@ -13,22 +13,7 @@ ina260.o: ina260.c ina260.h ../libopencm3//include/libopencm3/efm32/i2c.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_intsup.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_stdint.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/lib/gcc/arm-none-eabi/8.2.1/include/stdbool.h \
- usbcdc.h ../libopencm3//include/libopencm3/cm3/vector.h \
- ../libopencm3//include/libopencm3/cm3/nvic.h \
- ../libopencm3//include/libopencm3/dispatch/nvic.h \
- ../libopencm3//include/libopencm3/efm32/hg/nvic.h \
- ../libopencm3//include/libopencm3/cm3/scb.h \
- ../libopencm3//include/libopencm3/usb/usbd.h \
- ../libopencm3//include/libopencm3/usb/usbstd.h \
- ../libopencm3//include/libopencm3/usb/cdc.h \
- ../libopencm3//include/libopencm3/efm32/wdog.h \
- ../libopencm3//include/libopencm3/efm32/hg/wdog.h \
- ../libopencm3//include/libopencm3/efm32/common/wdog_common_hglg.h \
- ../libopencm3//include/libopencm3/efm32/gpio.h \
- ../libopencm3//include/libopencm3/efm32/hg/gpio.h \
- ../libopencm3//include/libopencm3/efm32/common/gpio_common_hglg.h \
- ../libopencm3//include/libopencm3/efm32/cmu.h \
- ../libopencm3//include/libopencm3/efm32/hg/cmu.h \
+ utils.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/stdio.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/_ansi.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/newlib.h \
@@ -48,6 +33,22 @@ ina260.o: ina260.c ina260.h ../libopencm3//include/libopencm3/efm32/i2c.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/_timespec.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/machine/types.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/stdio.h \
+ usbcdc.h ../libopencm3//include/libopencm3/cm3/vector.h \
+ ../libopencm3//include/libopencm3/cm3/nvic.h \
+ ../libopencm3//include/libopencm3/dispatch/nvic.h \
+ ../libopencm3//include/libopencm3/efm32/hg/nvic.h \
+ ../libopencm3//include/libopencm3/cm3/scb.h \
+ ../libopencm3//include/libopencm3/usb/usbd.h \
+ ../libopencm3//include/libopencm3/usb/usbstd.h \
+ ../libopencm3//include/libopencm3/usb/cdc.h \
+ ../libopencm3//include/libopencm3/efm32/wdog.h \
+ ../libopencm3//include/libopencm3/efm32/hg/wdog.h \
+ ../libopencm3//include/libopencm3/efm32/common/wdog_common_hglg.h \
+ ../libopencm3//include/libopencm3/efm32/gpio.h \
+ ../libopencm3//include/libopencm3/efm32/hg/gpio.h \
+ ../libopencm3//include/libopencm3/efm32/common/gpio_common_hglg.h \
+ ../libopencm3//include/libopencm3/efm32/cmu.h \
+ ../libopencm3//include/libopencm3/efm32/hg/cmu.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/string.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/xlocale.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/string.h

@@ -8,9 +8,14 @@
 #define INA260_POWER_REG 				0x03
 #define INA260_MANUFACTURER_REG 0xFE
 
+int ina260_getReg(int i2c, uint8_t reg, uint8_t* rxbuf);
+int ina260_setReg(int i2c, uint8_t reg, uint8_t* txbuf);
 
 int ina260_init(int i2c);
 
-int ina260_getV(int i2c);
-int ina260_getC(int i2c);
-int ina260_getP(int i2c);
+int ina260_getC(int i2c, int* val);
+int ina260_getV(int i2c, int* val);
+int ina260_getP(int i2c, int* val);
+
+int ina260_getConfig(int i2c, uint16_t* config);
+int ina260_setConfig(int i2c, uint16_t config);
