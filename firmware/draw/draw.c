@@ -61,7 +61,7 @@ int main(void)
   rv = ina260_getConfig(I2C0, &config);
   if (rv == 0) usb_printf("Config : 0x%04X, \r\n", config);
 
-  rv = ina260_setConfig(I2C0, 0x2763);
+  rv = ina260_setConfig(I2C0, 0x2769);
   if (rv < 0) usb_printf("ERR: O - %d\r\n", rv);
 
   int pwr, vol, cur;
@@ -73,9 +73,6 @@ int main(void)
     rv = ina260_getV(I2C0, &vol);
     if (rv < 0) usb_printf("ERR: V - %d\r\n", rv);
     usb_printf("V : %10d, C : %10d, P : %10d \r\n", vol, cur, pwr);
-    rv = ina260_getConfig(I2C0, &config);
-    if (rv < 0) usb_printf("ERR: O - %d\r\n", rv);
-    usb_printf("Config : 0x%04X, \r\n", config);
     udelay_busy(200000);
   }
 }

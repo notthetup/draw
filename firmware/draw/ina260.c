@@ -8,17 +8,16 @@ int ina260_getReg(int i2c, uint8_t reg, uint8_t* rxbuf){
 	return i2c_read(i2c, INA260_SLAVE_ADDRESS, rxbuf, 2, true);
 }
 
-int ina260_setReg(int i2c, uint8_t reg, uint8_t* txbuf){
-	int rv = i2c_write(i2c, INA260_SLAVE_ADDRESS, &reg, 1, false);
-	if (rv < 0) return rv;
-	return i2c_write(i2c, INA260_SLAVE_ADDRESS, txbuf, 2, true);
+int ina260_setReg(int i2c, uint8_t reg, uint8_t* val){
+	uint8_t txbuf [3] = {reg,val[0],val[1]};
+	return i2c_write(i2c, INA260_SLAVE_ADDRESS, txbuf, 3, true);
 }
 
 int ina260_init(int i2c){
 	uint8_t rxbuf [2] = {0,0};
 
 	i2c_init(i2c, true);
-	i2c_bus_freq_set(i2c, 21000000, 93000);
+	i2c_bus_freq_set(i2c, 21000000, 400000);
 	udelay_busy(2000);
 
 	int rv = ina260_getReg(i2c, INA260_MANUFACTURER_REG, rxbuf);
