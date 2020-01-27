@@ -58,3 +58,19 @@ int ina260_getConfig(int i2c, uint16_t* config){
 int ina260_setConfig(int i2c, uint16_t config){
 	return ina260_setReg(i2c, INA260_CONFIG_REG, (uint8_t*)(&config));
 }
+
+int ina260_getMaskEnable(int i2c, uint16_t* mask){
+	return ina260_getReg(i2c, INA260_MASK_ENABLE_REG, (uint8_t*)mask);
+}
+
+int ina260_setMaskEnable(int i2c, uint16_t mask){
+	return ina260_setReg(i2c, INA260_MASK_ENABLE_REG, (uint8_t*)(&mask));
+}
+
+int ina260_getAlertLimit(int i2c, uint16_t* limit){
+	return ina260_getReg(i2c, INA260_ALERT_LIMIT_REG, (uint8_t*)limit);
+}
+
+int ina260_setAlertLimit(int i2c, uint16_t limit){
+	return ina260_setReg(i2c, INA260_ALERT_LIMIT_REG, (uint8_t*)(&limit));
+}

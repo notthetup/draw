@@ -19,4 +19,4 @@ void usb_printf(char* format, ...);
 void usb_cdc_init(void);
 void usb_puts(char *s);
 
-void usb_cdc_wait_for_start(void);
+void usb_cdc_set_callback(void (*cb)(char *, int));
