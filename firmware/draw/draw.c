@@ -16,64 +16,14 @@
 
 #include <stdio.h>
 #include <string.h>
+
 #include "usbcdc.h"
 #include "ina260.h"
-#include "utils.h"
+#include "board.h"
+#include "cmd.h"
 
 #include "toboot.h"
 TOBOOT_CONFIGURATION(0);
-
-#define LED_GREEN_PORT GPIOA
-#define LED_GREEN_PIN  GPIO0
-#define LED_RED_PORT   GPIOB
-#define LED_RED_PIN    GPIO7
-
-char lastcmd = 0;
-char lastlastcmd = 0;
-
-void board_init(void);
-void cmd_parser(char * buf, int len);
-void execute_cmd(void);
-
-void board_init() {
-  /*Init peripheral clocks*/
-  cmu_periph_clock_enable(CMU_GPIO);
-  cmu_periph_clock_enable(CMU_I2C0);
-
-  /*Setup Pins for I2C*/
-  gpio_mode_setup(GPIOC, GPIO_MODE_WIRED_AND, 0); // PC0 - I2C0-SDA
-  gpio_mode_setup(GPIOC, GPIO_MODE_WIRED_AND, 1); // PC1 - I2C0-SCL
-
-  gpio_set(GPIOC,0);
-  gpio_set(GPIOC,1);
-}
-
-void execute_cmd(){
-  // usb_printf("# CMD : %c %c\r\n", lastlastcmd, lastcmd);
-  if (lastlastcmd == 'L'){
-    if (lastcmd == 'G') {
-      gpio_toggle(LED_GREEN_PORT, LED_GREEN_PIN);
-    }
-    if (lastcmd == 'R') {
-      gpio_toggle(LED_RED_PORT, LED_RED_PIN);
-    }
-  }
-}
-
-void cmd_parser(char * buf, int len){
-  for (int i = 0; i < len; ++i) {
-    // usb_printf("# %d:%d\r\n", i, buf[i]);
-    if (buf[i] == '\r'){
-      execute_cmd();
-      lastlastcmd = 0;
-      lastcmd = 0;
-    }else{
-      lastlastcmd = lastcmd;
-      lastcmd = buf[i];
-    }
-  }
-}
-
 
 int main(void) {
   // int rv;
@@ -81,8 +31,8 @@ int main(void) {
   WDOG_CTRL = 0;
 
   board_init();
-  usb_cdc_init();
 
+  usb_cdc_init();
   usb_cdc_set_callback(&cmd_parser);
 
   // rv = ina260_init(I2C0);

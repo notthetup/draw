@@ -143,9 +143,9 @@ static const struct usb_config_descriptor config = {
 };
 
 static const char *usb_strings[] = {
-    "Tomu",
-    "CDC-ACM Demo",
-    "DEMO",
+    "Draw",
+    "Draw",
+    "DRAW",
 };
 
 /* Buffer to be used for control requests. */
