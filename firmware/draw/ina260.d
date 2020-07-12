@@ -50,4 +50,5 @@ ina260.o: ina260.c ina260.h ../libopencm3//include/libopencm3/efm32/i2c.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/stdio.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/string.h \
  /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/xlocale.h \
- /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/string.h
+ /usr/local/gcc-arm-none-eabi-8-2018-q4-major/arm-none-eabi/include/sys/string.h \
+ board.h

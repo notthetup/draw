@@ -9,4 +9,7 @@
 #define LED_RED_PORT   GPIOB
 #define LED_RED_PIN    GPIO7
 
+#define ALERT_PIN     GPIO11
+#define ALERT_PORT    GPIOB
+
 void board_init(void);

@@ -1,5 +1,6 @@
 #include "ina260.h"
 #include "usbcdc.h"
+#include "board.h"
 
 static void udelay_busy(uint32_t usecs){
   while (usecs --> 0) {
@@ -38,6 +39,11 @@ int ina260_init(int i2c){
 	if (rv < 0) return rv;
 	if(rxbuf[0] != 0x54 || rxbuf[1] != 0x49) return -9;
 	return rv;
+}
+
+int int260_enableReadInterrupt(){
+	gpio_mode_setup(ALERT_PORT, GPIO_MODE_INPUT, ALERT_PIN);
+	// TODO Enable interrupt on this pin
 }
 
 int ina260_getC(int i2c, int* val){
