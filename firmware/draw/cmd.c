@@ -1,18 +1,25 @@
-#include "cmd.h"
+  #include "cmd.h"
 
-char lastcmd = 0;
-char lastlastcmd = 0;
+char cmdhistory[2] = {0,0};
 
 void execute_cmd(){
-  // usb_printf("# CMD : %c %c\r\n", lastlastcmd, lastcmd);
-  if (lastlastcmd == 'L'){
-    if (lastcmd == 'G') {
-      gpio_toggle(LED_GREEN_PORT, LED_GREEN_PIN);
+  // usb_printf("# CMD : %c %c\r\n", cmdhistory[1], cmdhistory[0]);
+  char ret[10] = {0};
+  if (cmdhistory[1] == 'L'){
+    if (cmdhistory[0] == 'G') {
+      uint16_t val = gpio_get(LED_GREEN_PORT, LED_GREEN_PIN);
+      if (val == 0) gpio_set(LED_GREEN_PORT, LED_GREEN_PIN);
+      else gpio_clear(LED_GREEN_PORT, LED_GREEN_PIN);
+      sprintf(ret, "#LG%d\r\n", val == 0 ? 0 : 1);
     }
-    if (lastcmd == 'R') {
-      gpio_toggle(LED_RED_PORT, LED_RED_PIN);
+    if (cmdhistory[0] == 'R') {
+     uint16_t val = gpio_get(LED_RED_PORT, LED_RED_PIN);
+     if (val == 0) gpio_set(LED_RED_PORT, LED_RED_PIN);
+     else gpio_clear(LED_RED_PORT, LED_RED_PIN);
+     sprintf(ret, "#LR%d\r\n", val == 0 ? 0 : 1);
     }
   }
+  usb_printf("%s", ret);
 }
 
 void cmd_parser(char * buf, int len){
@@ -20,11 +27,11 @@ void cmd_parser(char * buf, int len){
     // usb_printf("# %d:%d\r\n", i, buf[i]);
     if (buf[i] == '\r'){
       execute_cmd();
-      lastlastcmd = 0;
-      lastcmd = 0;
+      cmdhistory[1] = 0;
+      cmdhistory[0] = 0;
     }else{
-      lastlastcmd = lastcmd;
-      lastcmd = buf[i];
+      cmdhistory[1] = cmdhistory[0];
+      cmdhistory[0] = buf[i];
     }
   }
 }

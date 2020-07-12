@@ -1,3 +1,5 @@
+#pragma once
+
 #include <libopencm3/cm3/common.h>
 #include <libopencm3/cm3/vector.h>
 #include <libopencm3/cm3/scb.h>

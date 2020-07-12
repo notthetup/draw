@@ -61,5 +61,9 @@ int main(void) {
   //   udelay_busy(200000);
   // }
 
-  while(1){}
+  while(1){
+    __asm__("dsb");
+    __asm__("wfi");
+    __asm__("isb");zl
+  }
 }
