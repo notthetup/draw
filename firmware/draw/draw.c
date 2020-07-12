@@ -64,6 +64,6 @@ int main(void) {
   while(1){
     __asm__("dsb");
     __asm__("wfi");
-    __asm__("isb");zl
+    __asm__("isb");
   }
 }
