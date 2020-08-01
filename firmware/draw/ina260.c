@@ -28,10 +28,10 @@ int ina260_setReg(int i2c, uint8_t reg, uint8_t* val){
 	return i2c_write(i2c, INA260_SLAVE_ADDRESS, txbuf, 3, true);
 }
 
-int ina260_init(int i2c){
+int ina260_init(int i2c, int loc){
 	uint8_t rxbuf [2] = {0,0};
 
-	i2c_init(i2c, true);
+	i2c_init(i2c, loc, true);
 	i2c_bus_freq_set(i2c, 21000000, 400000);
 	udelay_busy(2000);
 
@@ -44,6 +44,7 @@ int ina260_init(int i2c){
 int int260_enableReadInterrupt(){
 	gpio_mode_setup(ALERT_PORT, GPIO_MODE_INPUT, ALERT_PIN);
 	// TODO Enable interrupt on this pin
+	return 0;
 }
 
 int ina260_getC(int i2c, int* val){

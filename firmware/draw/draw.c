@@ -25,6 +25,8 @@
 #include "toboot.h"
 TOBOOT_CONFIGURATION(0);
 
+#define INA260_I2C_LOC 4
+
 int main(void) {
   // int rv;
   /* Disable the watchdog that the bootloader started. */
@@ -35,7 +37,7 @@ int main(void) {
   usb_cdc_init();
   usb_cdc_set_callback(&cmd_parser);
 
-  // rv = ina260_init(I2C0);
+  // rv = ina260_init(I2C0, INA260_I2C_LOC);
   // if (rv < 0){
   //   usb_printf("# INA260 Init Error %d\r\n", rv);
   // }

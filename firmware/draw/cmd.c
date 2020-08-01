@@ -21,6 +21,9 @@ void execute_cmd(){
     case '?':
       print_status(ret);
     break;
+    case 'd':
+      print_debug(ret);
+    break;
   }
   if (ret[0] != 0 ) usb_printf("%s", ret);
 }
@@ -58,6 +61,14 @@ void update_time(char timstr, char *ret){
 
 void print_status(char *ret){
   sprintf(ret, "#A%d\tT%d\r\n", avg, tim);
+}
+
+void print_debug(char *ret){
+  usb_printf("Clk Status : \r\n");
+  for (int i = 0; i < 55; i++)
+  {
+    usb_printf("0X%08X - 0X%08X \r\n", i*4, MMIO32(CMU_BASE + i*4));
+  }
 }
 
 

@@ -13,7 +13,7 @@
 int ina260_getReg(int i2c, uint8_t reg, uint8_t* rxbuf);
 int ina260_setReg(int i2c, uint8_t reg, uint8_t* txbuf);
 
-int ina260_init(int i2c);
+int ina260_init(int i2c, int loc);
 
 int ina260_getC(int i2c, int* val);
 int ina260_getV(int i2c, int* val);
